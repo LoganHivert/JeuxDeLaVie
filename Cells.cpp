@@ -1,0 +1,15 @@
+#include "Cells.h"
+
+Cell::Cell(int _x, int _y) {
+	this->x = _x;
+	this->y = _y;
+	this->alive = true;
+}
+
+int Cell::getPosX(){
+	return this->x;
+}
+
+int Cell::getPosY() {
+	return this->y;
+}
