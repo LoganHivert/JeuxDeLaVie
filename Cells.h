@@ -1,5 +1,5 @@
 #pragma once
-#define CELL_SIZE 30
+#define CELL_SIZE 30//test
 
 class Cell {
 public:
