@@ -1,4 +1,6 @@
 #pragma once
+#define CELL_SIZE 30
+
 class Cell {
 public:
 	Cell(int _x, int _y);

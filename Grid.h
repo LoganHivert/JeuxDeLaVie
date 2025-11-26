@@ -1,5 +1,7 @@
 #pragma once
 #include "Cells.h"
+#include <vector>
+
 class Grid {
 public:
     Grid(int cellSize, int rows, int cols);
