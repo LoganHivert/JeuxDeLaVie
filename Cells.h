@@ -1,4 +1,5 @@
 #pragma once
+#include <SFML/Graphics.hpp>
 #define CELL_SIZE 30//test
 
 class Cell {
