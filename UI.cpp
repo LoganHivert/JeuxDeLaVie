@@ -4,8 +4,17 @@
 #include "grid.h"
 
 void UI::Windows() {
-    Grid grid(CELL_SIZE, 60, 30);
-    sf::RenderWindow window(sf::VideoMode({ static_cast<unsigned int>(grid.WindowsLength),static_cast<unsigned int>(grid.WindowsWidth) }), "Game of the life");
+    // Récupérer la taille de l'écran
+    sf::VideoMode desktop = sf::VideoMode::getDesktopMode();
+
+    // Calculer combien de cellules rentrent à l'écran
+    int rows = desktop.size.x / CELL_SIZE;
+    int cols = desktop.size.y / CELL_SIZE;
+
+    Grid grid(CELL_SIZE, rows, cols);
+
+    // Créer fenêtre en plein écran
+    sf::RenderWindow window(desktop, "Game of the life", sf::State::Windowed);
 
     // Conteneur pour stocker les rectangles de la grille
     std::vector<sf::RectangleShape> gridLines;
@@ -32,6 +41,11 @@ void UI::Windows() {
         while (const std::optional<sf::Event> event = window.pollEvent()) {
             if (event->is<sf::Event::Closed>())
                 window.close();
+            // Échap pour quitter le plein écran
+            if (event->is<sf::Event::KeyPressed>()) {
+                if (event->getIf<sf::Event::KeyPressed>()->code == sf::Keyboard::Key::Escape)
+                    window.close();
+            }
         }
 
         window.clear(sf::Color::Black);
