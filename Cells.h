@@ -9,6 +9,7 @@ public:
 	int getPosX();
 	int getPosY();
 private:
+	int getVoisinage();
 	int x;
 	int y;
 };
