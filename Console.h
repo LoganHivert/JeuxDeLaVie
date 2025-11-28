@@ -1,5 +1,6 @@
 #pragma once
-#include "Game.h"
+class Game;
+#include <fstream>
 #include <string>
 #include <iostream>
 
@@ -8,7 +9,7 @@ public:
 	Console(Game* g);
 	void menu();
 	void play(int a);
-	void load(std::string n);
+	void load();
 	void save();
 private:
 	Game* game;

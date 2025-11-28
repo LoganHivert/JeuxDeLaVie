@@ -1,4 +1,4 @@
-#include "grid.h"
+#include "Grid.h"
 
 Grid::Grid(int cellSize, int rows, int cols) {
 	this->cellSize = cellSize;
@@ -22,6 +22,7 @@ int Grid::getVoisinage(int x, int y) {
 	return nbAlive;
 }
 
-int Grid::getCell(int x, int y){
+int Grid::getCell(int x, int y) {
+	if (x < 0 || y < 0 || x >= rows || y >= cols) return 0;
 	return cells[x][y].alive;
 }

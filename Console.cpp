@@ -1,17 +1,76 @@
 #include "Console.h"
+#include "Game.h"
+#include <algorithm>
 
 Console::Console(Game* g) : game(g) {}
 
 void Console::play(int a){
-	for (int i = 0; i <= a; i++) {
+	if (!game || !game->grid) {
+		std::cerr << "Pas de grille disponible pour jouer !" << std::endl;
+		return;
+	}
+	for (int i = 0; i < a; ++i) {
 		game->checkGrid();
 	}
 }
 
-void Console::load(std::string n){}
+void Console::load(){
+    std::ifstream load("Pattern/Pattern1.txt", std::ios::in);
+    if (!load) {
+        std::cerr << "Impossible d'ouvrir le fichier de pattern !" << std::endl;
+        return;
+    }
+    if (!game || !game->grid) {
+        std::cerr << "Pas de grille à charger !" << std::endl;
+        return;
+    }
+
+    int fileRows = 0;
+    int fileCols = 0;
+    if (!(load >> fileRows)) {
+        std::cerr << "Fichier de pattern invalide (rows) !" << std::endl;
+        return;
+    }
+    if (!(load >> fileCols)) {
+        std::cerr << "Fichier de pattern invalide (cols) !" << std::endl;
+        return;
+    }
+
+    std::string line;
+    std::getline(load, line); // consume end of line
+    std::getline(load, line); // consume blank line
+
+    int maxRows = std::min(fileRows, game->grid->rows);
+    int maxCols = std::min(fileCols, game->grid->cols);
+
+    for (int i = 0; i < maxRows; ++i) {
+        if (!std::getline(load, line)) break;
+        for (int j = 0; j < maxCols && j < (int)line.size(); ++j) {
+            char ch = line[j];
+            game->grid->cells[i][j].alive = (ch == '1') ? 1 : 0;
+        }
+    }
+}
 
 void Console::save() {
+    std::ofstream save("Pattern/Pattern1.txt", std::ios::out | std::ios::trunc);
+    if (!save) {
+        std::cerr << "Impossible d'ouvrir le fichier !" << std::endl;
+        return;
+    }
+    if (!game || !game->grid) {
+        std::cerr << "Pas de grille à sauvegarder !" << std::endl;
+        return;
+    }
 
+    save << game->grid->rows << std::endl;
+    save << game->grid->cols << std::endl << std::endl;
+    for (int i = 0; i < game->grid->rows; ++i) {
+        for (int j = 0; j < game->grid->cols; ++j) {
+            save << game->grid->getCell(i, j);
+        }
+        save << std::endl;
+    }
 }
 
 void Console::menu() {
@@ -19,5 +78,28 @@ void Console::menu() {
 	std::cout << "           #  Jeu de la vie  #" << std::endl;
 	std::cout << "           ###################" << std::endl << std::endl;
 	std::cout << "par Logan et Raphaël" << std::endl << std::endl;
-
+    std::cout << "1: Lancer le jeu" << std::endl;
+    std::cout << "2: Sauvegarder" << std::endl;
+    std::cout << "3: Charger" << std::endl;
+    std::cout << "4: Quitter" << std::endl;
+    int choix;
+    std::cin >> choix;
+    switch (choix){
+    case 1:
+        int nbtour;
+        std::cin >> nbtour;
+        play(nbtour);
+        break;
+    case 2:
+        save();
+        break;
+    case 3:
+        load();
+        break;
+    case 4:
+        exit(0);
+        break;
+    default:
+        break;
+    }
 }
