@@ -14,7 +14,7 @@ void UI::Windows() {
     Grid grid(CELL_SIZE, rows, cols);
 
     // Créer fenêtre en plein écran
-    sf::RenderWindow window(desktop, "Game of the life", sf::State::Windowed);
+    sf::RenderWindow window(desktop, "Game of the life", sf::State::Fullscreen);
 
     // Conteneur pour stocker les rectangles de la grille
     std::vector<sf::RectangleShape> gridLines;
