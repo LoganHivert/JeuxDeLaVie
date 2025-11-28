@@ -3,40 +3,118 @@
 #include <SFML/Graphics.hpp>
 #include "grid.h"
 
-void UI::Windows() {
-
-    Grid grid(CELL_SIZE, 60, 30);
-
-    sf::RenderWindow window(sf::VideoMode({ static_cast<unsigned int>(grid.WindowsLength),static_cast<unsigned int>(grid.WindowsWidth) }), "Game of the life");
-    // Conteneur pour stocker les rectangles de la grille
+// Fonction utilitaire pour générer les lignes de la grille
+std::vector<sf::RectangleShape> createGridLines(const Grid& grid) {
     std::vector<sf::RectangleShape> gridLines;
+
     // Lignes verticales
-    for (int x = 0; x <= grid.rows; ++x) {
+    for (int x = 0; x <= grid.cols; ++x) {
         float px = x * grid.cellSize;
-        sf::RectangleShape line(sf::Vector2f(1, grid.WindowsWidth));
-        line.setPosition(sf::Vector2f(px, 0));
-        line.setFillColor(sf::Color(80, 80, 80));
-        gridLines.push_back(line);
-    }
-    // Lignes horizontales
-    for (int y = 0; y <= grid.cols; ++y) {
-        float py = y * grid.cellSize;
-        sf::RectangleShape line(sf::Vector2f(grid.WindowsLength, 1));
-        line.setPosition(sf::Vector2f(0, py));
-        line.setFillColor(sf::Color(80, 80, 80));
+        sf::RectangleShape line(sf::Vector2f(1.f, static_cast<float>(grid.WindowsLength)));
+        line.setPosition(sf::Vector2f(px, 0.f));
+        line.setFillColor(sf::Color(150, 150, 150));
         gridLines.push_back(line);
     }
 
-    while (window.isOpen()) { //laisse la fenetre ouverte 
-        while (const std::optional<sf::Event> event = window.pollEvent()) {
-            if (event->is<sf::Event::Closed>())
-                window.close();
+    // Lignes horizontales
+    for (int y = 0; y <= grid.rows; ++y) {
+        float py = y * grid.cellSize;
+        sf::RectangleShape line(sf::Vector2f(static_cast<float>(grid.WindowsWidth), 1.f));
+        line.setPosition(sf::Vector2f(0.f, py));
+        line.setFillColor(sf::Color(150, 150, 150));
+        gridLines.push_back(line);
+    }
+
+    return gridLines;
+}
+
+void UI::Windows() {
+    // Initialisation de la grille
+    Grid grid(CELL_SIZE, 64, 64);
+
+    // Création de la fenêtre SFML
+    sf::RenderWindow window(
+        sf::VideoMode({
+            static_cast<unsigned int>(grid.WindowsLength),
+            static_cast<unsigned int>(grid.WindowsWidth)
+            }),
+        "Game of Life"
+    );
+
+    // Vue fixe (caméra)
+    float viewWidth = static_cast<float>(grid.cols) * static_cast<float>(grid.cellSize);
+    float viewHeight = static_cast<float>(grid.rows) * static_cast<float>(grid.cellSize);
+
+    // SFML 3.0.2 : utilise setCenter et setSize au lieu de reset
+    sf::View view;
+    view.setCenter(sf::Vector2f(viewWidth / 2.f, viewHeight / 2.f));
+    view.setSize(sf::Vector2f(viewWidth, viewHeight));
+    window.setView(view);
+
+    // Génération des lignes de la grille
+    std::vector<sf::RectangleShape> gridLines = createGridLines(grid);
+
+    // Création des cellules
+    std::vector<sf::RectangleShape> cells;
+    cells.reserve(grid.rows * grid.cols);
+    for (int y = 0; y < grid.rows; ++y) {
+        for (int x = 0; x < grid.cols; ++x) {
+            sf::RectangleShape cell(sf::Vector2f(grid.cellSize, grid.cellSize));
+            cell.setPosition(sf::Vector2f(x * grid.cellSize, y * grid.cellSize));
+            cell.setFillColor(sf::Color::Black); // cellule morte
+            cell.setOutlineThickness(1);
+            cell.setOutlineColor(sf::Color(150, 150, 150));
+            cells.push_back(cell);
         }
+    }
+
+    // Boucle principale
+    while (window.isOpen()) {
+        while (auto event = window.pollEvent()) {
+            if (event->is<sf::Event::Closed>()) {
+                window.close();
+            }
+
+            // Clic souris : basculer l’état d’une cellule
+            if (auto mouse = event->getIf<sf::Event::MouseButtonPressed>()) {
+                int x = mouse->position.x / grid.cellSize;
+                int y = mouse->position.y / grid.cellSize;
+                int index = y * grid.cols + x;
+                if (index >= 0 && index < cells.size()) {
+                    if (cells[index].getFillColor() == sf::Color::Black)
+                        cells[index].setFillColor(sf::Color::White); // vivante
+                    else
+                        cells[index].setFillColor(sf::Color::Black); // morte
+                }
+            }
+
+            // Zoom avec la molette
+            if (auto wheel = event->getIf<sf::Event::MouseWheelScrolled>()) {
+                if (wheel->delta > 0)
+                    view.zoom(0.9f); // zoom avant
+                else
+                    view.zoom(1.1f); // zoom arrière
+                window.setView(view);
+            }
+
+            // Redimensionnement : garder la vue fixe
+            if (event->is<sf::Event::Resized>()) {
+                window.setView(view);
+            }
+        }
+
         window.clear(sf::Color::Black);
-        // Dessiner toutes les lignes
+
+        // Dessiner toutes les cellules
+        for (auto& cell : cells) {
+            window.draw(cell);
+        }
+
+        // Dessiner les lignes de la grille
         for (auto& line : gridLines) {
             window.draw(line);
         }
+
         window.display();
     }
 }
