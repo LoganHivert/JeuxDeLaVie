@@ -13,7 +13,7 @@ void Game::checkGrid() {
 			}
 		}
 	}
-	return
+	return;
 }
 
 void Game::LawAlive(int x, int y) {
