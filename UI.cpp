@@ -42,8 +42,7 @@ void UI::Windows() {
         "Game of Life"
     );
 
-    // Vue fixe (caméra)
-    float viewWidth = static_cast<float>(grid.cols) * static_cast<float>(grid.cellSize);
+        float viewWidth = static_cast<float>(grid.cols) * static_cast<float>(grid.cellSize);
     float viewHeight = static_cast<float>(grid.rows) * static_cast<float>(grid.cellSize);
 
     // SFML 3.0.2 : utilise setCenter et setSize au lieu de reset

@@ -23,10 +23,5 @@ int Grid::getVoisinage(int x, int y) {
 }
 
 int Grid::getCell(int x, int y){
-	if (cells[x][y].alive) {
-		return 1;
-	}
-	else {
-		return 0;
-	}
+	return cells[x][y].alive;
 }
