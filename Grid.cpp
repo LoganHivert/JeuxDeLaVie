@@ -1,19 +1,28 @@
 #include "grid.h"
+#include "Cells.h"
 
-Grid::Grid(int cellSize, int rows, int cols) {
-	this->cellSize = cellSize;
+Grid::Grid(int rows, int cols) {
+
 	this->rows = rows;
 	this->cols = cols;
-	for (int i = 0; i < rows; ++i) {
+
+	this->cellGraph.reserve(this->rows * this->cols);
+	for (int y = 0; y < rows; ++y) {
 		std::vector<Cell> row;
-		for (int j = 0; j < cols; ++j) {
-			row.emplace_back(i, j);
+		for (int x = 0; x < cols; ++x) {
+			row.emplace_back(x, y);
+			sf::RectangleShape shape(sf::Vector2f(CELL_SIZE, CELL_SIZE));
+			shape.setPosition(sf::Vector2f(x * CELL_SIZE, y * CELL_SIZE));
+			shape.setFillColor(sf::Color::Black); // cellule morte
+			shape.setOutlineThickness(1);
+			shape.setOutlineColor(sf::Color(150, 150, 150));
+			this->cellGraph.push_back(shape);
 		}
 		cells.push_back(std::move(row));
 	}
 
-	this->WindowsLength = this->rows * this->cellSize;
-	this->WindowsWidth = this->cols * this->cellSize;
+	this->WindowsLength = this->rows * CELL_SIZE;
+	this->WindowsWidth = this->cols * CELL_SIZE;
 }
 
 int Grid::getVoisinage(int x, int y) {
