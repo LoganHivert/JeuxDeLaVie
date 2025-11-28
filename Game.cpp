@@ -1,8 +1,22 @@
 #include "Game.h"
 
-Laws::Laws(Grid* g) : grid(g) {}
+Game::Game(Grid* g) : grid(g) {}
 
-void Laws::LawAlive(int x, int y) {
+void Game::checkGrid() {
+	for (int i = 0; i <= grid->rows; i++) {
+		for (int j = 0; j <= grid->cols; i++) {
+			if (grid->cells[i][j].alive) {
+				LawAlive(i, j);
+			}
+			else {
+				LawDead(i, j);
+			}
+		}
+	}
+	return
+}
+
+void Game::LawAlive(int x, int y) {
 	int nbAlive = grid->getVoisinage(x, y);
 	if (nbAlive == 3 || nbAlive == 2) {
 		return;
@@ -13,7 +27,7 @@ void Laws::LawAlive(int x, int y) {
 	}
 }
 
-void Laws::LawDead(int x, int y) {
+void Game::LawDead(int x, int y) {
 	int nbAlive = grid->getVoisinage(x, y);
 	if (nbAlive == 3) {
 		grid->cells[x][y].alive = true;

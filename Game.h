@@ -3,14 +3,8 @@
 
 class Game {
 public:
-	Game();
-	void playGame();
-
-};
-
-class Laws {
-public:
-	Laws(Grid* g);
+	Game(Grid* g);
+	void checkGrid();
 	void LawAlive(int x, int y);
 	void LawDead(int x, int y);
 private:
