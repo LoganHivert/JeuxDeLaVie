@@ -32,12 +32,11 @@ void UI::Windows() {
     // Initialisation de la grille
     Grid grid(100, 100);
 
-    sf::VideoMode desktop = sf::VideoMode::getDesktopMode();
     // Création de la fenêtre SFML
     sf::RenderWindow window(
         sf::VideoMode({
-            static_cast<unsigned int>(desktop.size.x *0.6f),
-            static_cast<unsigned int>(desktop.size.y*0.8f)
+            static_cast<unsigned int>(800),
+            static_cast<unsigned int>(800)
             }),
         "Game of Life"
     );
