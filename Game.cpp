@@ -22,7 +22,7 @@ void Game::LawAlive(int x, int y) {
 		return;
 	}
 	else {
-		grid->cells[x][y].alive = false;
+		grid->cells[x][y].alive = 0;
 		return;
 	}
 }
@@ -30,7 +30,7 @@ void Game::LawAlive(int x, int y) {
 void Game::LawDead(int x, int y) {
 	int nbAlive = grid->getVoisinage(x, y);
 	if (nbAlive == 3) {
-		grid->cells[x][y].alive = true;
+		grid->cells[x][y].alive = 1;
 		return;
 	}
 	else {

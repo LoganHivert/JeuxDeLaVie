@@ -30,7 +30,7 @@ std::vector<sf::RectangleShape> createGridLines(const Grid& grid) {
 
 void UI::Windows() {
     // Initialisation de la grille
-    Grid grid(CELL_SIZE, 64, 64);
+    Grid grid(CELL_SIZE, 30, 30);
 
     // Création de la fenêtre SFML
     sf::RenderWindow window(
@@ -41,8 +41,7 @@ void UI::Windows() {
         "Game of Life"
     );
 
-    // Vue fixe (caméra)
-    float viewWidth = static_cast<float>(grid.cols) * static_cast<float>(grid.cellSize);
+        float viewWidth = static_cast<float>(grid.cols) * static_cast<float>(grid.cellSize);
     float viewHeight = static_cast<float>(grid.rows) * static_cast<float>(grid.cellSize);
 
     // SFML 3.0.2 : utilise setCenter et setSize au lieu de reset
