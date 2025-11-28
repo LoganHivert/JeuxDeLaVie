@@ -30,13 +30,14 @@ std::vector<sf::RectangleShape> createGridLines(const Grid& grid) {
 
 void UI::Windows() {
     // Initialisation de la grille
-    Grid grid(CELL_SIZE, 64, 64);
+    Grid grid(CELL_SIZE, 100, 100);
 
+    sf::VideoMode desktop = sf::VideoMode::getDesktopMode();
     // Création de la fenêtre SFML
     sf::RenderWindow window(
         sf::VideoMode({
-            static_cast<unsigned int>(grid.WindowsLength),
-            static_cast<unsigned int>(grid.WindowsWidth)
+            static_cast<unsigned int>(desktop.size.x *0.8f),
+            static_cast<unsigned int>(desktop.size.y*0.7f)
             }),
         "Game of Life"
     );
@@ -75,12 +76,20 @@ void UI::Windows() {
                 window.close();
             }
 
-            // Clic souris : basculer l’état d’une cellule
+            // Clic souris : basculer l'état d'une cellule
             if (auto mouse = event->getIf<sf::Event::MouseButtonPressed>()) {
-                int x = mouse->position.x / grid.cellSize;
-                int y = mouse->position.y / grid.cellSize;
-                int index = y * grid.cols + x;
-                if (index >= 0 && index < cells.size()) {
+                // CORRECTION : Convertir les coordonnées écran en coordonnées monde
+                sf::Vector2f worldPos = window.mapPixelToCoords(
+                    sf::Vector2i(mouse->position.x, mouse->position.y)
+                );
+
+                // Calculer quelle cellule a été cliquée
+                int x = static_cast<int>(worldPos.x / grid.cellSize);
+                int y = static_cast<int>(worldPos.y / grid.cellSize);
+
+                // Vérifier que les coordonnées sont valides
+                if (x >= 0 && x < grid.cols && y >= 0 && y < grid.rows) {
+                    int index = y * grid.cols + x;
                     if (cells[index].getFillColor() == sf::Color::Black)
                         cells[index].setFillColor(sf::Color::White); // vivante
                     else
@@ -90,15 +99,24 @@ void UI::Windows() {
 
             // Zoom avec la molette
             if (auto wheel = event->getIf<sf::Event::MouseWheelScrolled>()) {
-                if (wheel->delta > 0)
-                    view.zoom(0.9f); // zoom avant
-                else
-                    view.zoom(1.1f); // zoom arrière
-                window.setView(view);
-            }
+ 
 
-            // Redimensionnement : garder la vue fixe
-            if (event->is<sf::Event::Resized>()) {
+                // Récupérer la taille actuelle de la vue
+                sf::Vector2f size = view.getSize();
+
+                if (wheel->delta > 0) {
+                    // Zoom avant
+                    if (size.x > MinZoom) {
+                        view.zoom(0.9f);
+                    }
+                }
+                else {
+                    // Zoom arrière
+                    if (size.x < MaxZoom) {
+                        view.zoom(1.1f);
+                    }
+                }
+
                 window.setView(view);
             }
         }
