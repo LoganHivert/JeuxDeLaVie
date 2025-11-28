@@ -19,7 +19,7 @@ Grid::Grid(int cellSize, int rows, int cols) {
 int Grid::getVoisinage(int x, int y) {
 	int nbAlive = 0;
 	nbAlive += getCell(x - 1, y - 1) + getCell(x - 1, y) + getCell(x - 1, y + 1) + getCell(x, y - 1) + getCell(x, y + 1) + getCell(x + 1, y - 1) + getCell(x + 1, y) + getCell(x + 1, y + 1);
-	return 1;
+	return nbAlive;
 }
 
 int Grid::getCell(int x, int y){
