@@ -4,6 +4,13 @@ Grid::Grid(int cellSize, int rows, int cols) {
 	this->cellSize = cellSize;
 	this->rows = rows;
 	this->cols = cols;
+	for (int i = 0; i < rows; ++i) {
+		std::vector<Cell> row;
+		for (int j = 0; j < cols; ++j) {
+			row.emplace_back(i, j);
+		}
+		cells.push_back(std::move(row));
+	}
 
 	this->WindowsLength = this->rows * this->cellSize;
 	this->WindowsWidth = this->cols * this->cellSize;
@@ -16,7 +23,4 @@ int Grid::getVoisinage(int x, int y) {
 }
 
 int Grid::getCell(int x, int y){
-	//sortir la cellule correspondant aux coordonnées du tableau
-	//si vivante return 1
-	//else return 0
 }
