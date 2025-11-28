@@ -7,9 +7,9 @@ Cell::Cell(int _x, int _y) {
 }
 
 int Cell::getPosX(){
-	return this->x;
+	return (this->x * CELL_SIZE);
 }
 
 int Cell::getPosY() {
-	return this->y;
+	return (this->y * CELL_SIZE);
 }
