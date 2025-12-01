@@ -1,5 +1,6 @@
 #include "Game.h"
 #include "Grid.h"
+#include "UI.h"
 
 
 Game::Game(Grid* g) : grid(g) {}
@@ -47,9 +48,21 @@ void Game::LawDead(int x, int y) {
 void Game::launchGame() {
 	this-> grid = new Grid();
 	Console console(this);
-	while (1)
-	{
-		console.menu();
+	std::cout << "Mode de lancement:" << std::endl;
+	std::cout << "1: Console" << std::endl;
+	std::cout << "2: UI" << std::endl;
+	int choix;
+	std::cin >> choix;
+	switch (choix) {
+	case 1:
+		while (1)
+		{
+			console.menu();
+		}
+		break;
+	case 2:
+		UI ui;
+		ui.Windows();
 	}
 	delete this->grid;
 	this->grid = nullptr;
