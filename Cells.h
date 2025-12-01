@@ -1,6 +1,6 @@
 #pragma once
 #include <SFML/Graphics.hpp>
-#define CELL_SIZE 30//test
+const int CELL_SIZE = 30;
 
 class Cell {
 public:
@@ -8,6 +8,7 @@ public:
 	int alive;
 	int getPosX();
 	int getPosY();
+	sf::RectangleShape shape;
 private:
 	int x;
 	int y;

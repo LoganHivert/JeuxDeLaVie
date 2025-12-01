@@ -40,8 +40,8 @@ void Console::load(){
     std::getline(load, line); // consume end of line
     std::getline(load, line); // consume blank line
 
-    int maxRows = std::min(fileRows, game->grid->rows);
-    int maxCols = std::min(fileCols, game->grid->cols);
+    int maxRows = std::min(fileRows, ROWS);
+    int maxCols = std::min(fileCols, COLS);
 
     for (int i = 0; i < maxRows; ++i) {
         if (!std::getline(load, line)) break;
@@ -63,10 +63,10 @@ void Console::save() {
         return;
     }
 
-    save << game->grid->rows << std::endl;
-    save << game->grid->cols << std::endl << std::endl;
-    for (int i = 0; i < game->grid->rows; ++i) {
-        for (int j = 0; j < game->grid->cols; ++j) {
+    save << ROWS << std::endl;
+    save << COLS << std::endl << std::endl;
+    for (int i = 0; i < ROWS; ++i) {
+        for (int j = 0; j < COLS; ++j) {
             save << game->grid->getCell(i, j);
         }
         save << std::endl;

@@ -2,9 +2,9 @@
 #include "Game.h"
 
 int main() {
-    //UI Windows;
-    //Windows.Windows();
+	UI ui;
+	ui.Windows();
     Game game(nullptr);
     game.launchGame();
     return 0;
-}
+} 
