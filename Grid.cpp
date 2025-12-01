@@ -6,7 +6,7 @@ Grid::Grid() {
 	for (int y = 0; y < ROWS; ++y) {
 		std::vector<Cell> row;
 		for (int x = 0; x < COLS; ++x) {
-			row.emplace_back(x, y);
+			row.emplace_back(x, y, 0);
 		}
 		cells.push_back(std::move(row));
 	}

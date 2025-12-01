@@ -14,6 +14,10 @@ void Game::checkGrid() {
 			}
 		}
 	}
+	for (int i = 0; i < tempChange.size(); ++i) {
+		grid->cells[tempChange[i].getPosX()][tempChange[i].getPosY()].alive = tempChange[i].alive;
+	}
+	tempChange.clear();
 	return;
 }
 
@@ -23,7 +27,7 @@ void Game::LawAlive(int x, int y) {
 		return;
 	}
 	else {
-		grid->cells[x][y].alive = 0;
+		tempChange.emplace_back(x, y, 0);
 		return;
 	}
 }
@@ -31,7 +35,7 @@ void Game::LawAlive(int x, int y) {
 void Game::LawDead(int x, int y) {
 	int nbAlive = grid->getVoisinage(x, y);
 	if (nbAlive == 3) {
-		grid->cells[x][y].alive = 1;
+		tempChange.emplace_back(x, y, 1);
 		return;
 	}
 	else {

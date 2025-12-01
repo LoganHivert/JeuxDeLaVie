@@ -4,8 +4,10 @@ const int CELL_SIZE = 30;
 
 class Cell {
 public:
-	Cell(int _x, int _y);
+	Cell(int _x, int _y, int al);
 	int alive;
+	int getPosXUi();
+	int getPosYUi();
 	int getPosX();
 	int getPosY();
 	sf::RectangleShape shape;
