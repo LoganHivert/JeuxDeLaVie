@@ -87,6 +87,7 @@ void Console::menu() {
     switch (choix){
     case 1:
         int nbtour;
+        std::cout << "Indiquez le nombre de tour que vous désirez effectuer:" << std::endl;
         std::cin >> nbtour;
         play(nbtour);
         break;

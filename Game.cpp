@@ -40,7 +40,7 @@ void Game::LawDead(int x, int y) {
 }
 
 void Game::launchGame() {
-	this-> grid = new Grid(CELL_SIZE, 100, 100);
+	this-> grid = new Grid(100, 100);
 	Console console(this);
 	while (1)
 	{
