@@ -17,9 +17,18 @@ Grid::Grid() {
 
 int Grid::getVoisinage(int x, int y) {
 	int nbAlive = 0;
-	nbAlive += getCell(x - 1, y - 1) + getCell(x - 1, y) + getCell(x - 1, y + 1) + getCell(x, y - 1) + getCell(x, y + 1) + getCell(x + 1, y - 1) + getCell(x + 1, y) + getCell(x + 1, y + 1);
+	for (int j = 0; j < 3; j++) {
+		for (int i = 0; i < 3; i++) {
+			nbAlive += getCell(x - 1 + i, y - 1 + j);
+
+		}
+	}
+	if (getCell(x, y) == 1 && nbAlive > 0) {
+		nbAlive -= 1;
+	}
 	return nbAlive;
 }
+
 
 int Grid::getCell(int x, int y) {
 	if (x < 0 || y < 0 || x >= ROWS || y >= COLS) return 0;

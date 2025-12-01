@@ -1,6 +1,7 @@
 #include "Game.h"
 #include "Grid.h"
 
+
 Game::Game(Grid* g) : grid(g) {}
 
 void Game::checkGrid() {
@@ -23,7 +24,7 @@ void Game::checkGrid() {
 
 void Game::LawAlive(int x, int y) {
 	int nbAlive = grid->getVoisinage(x, y);
-	if (nbAlive == 3 || nbAlive == 2) {
+	if (nbAlive >= MiniLawAlive && nbAlive <= MaxiLawAlive) {
 		return;
 	}
 	else {
@@ -34,7 +35,7 @@ void Game::LawAlive(int x, int y) {
 
 void Game::LawDead(int x, int y) {
 	int nbAlive = grid->getVoisinage(x, y);
-	if (nbAlive == 3) {
+	if (nbAlive == MiniLawDead) {
 		tempChange.emplace_back(x, y, 1);
 		return;
 	}
