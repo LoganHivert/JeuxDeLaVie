@@ -15,7 +15,13 @@ void Console::play(int a){
 }
 
 void Console::load(){
-    std::ifstream load("Pattern/Pattern1.txt", std::ios::in);
+    std::string file;
+    std::cout << "Indiquez le chemin du fichier dans lequel vous voulez enregistrer votre pattern." << std::endl;
+    std::cin >> file;
+    if (file == "1") {
+        file = "Pattern/Pattern1.txt";
+    }
+    std::ifstream load(file, std::ios::in);
     if (!load) {
         std::cerr << "Impossible d'ouvrir le fichier de pattern !" << std::endl;
         return;
@@ -53,7 +59,13 @@ void Console::load(){
 }
 
 void Console::save() {
-    std::ofstream save("Pattern/Pattern1.txt", std::ios::out | std::ios::trunc);
+    std::string file;
+    std::cout << "Indiquez le chemin du fichier dans lequel vous voulez enregistrer votre pattern." << std::endl;
+    std::cin >> file;
+    if (file == "1") {
+        file = "Pattern/Pattern1.txt";
+    }
+    std::ofstream save(file, std::ios::out | std::ios::trunc);
     if (!save) {
         std::cerr << "Impossible d'ouvrir le fichier !" << std::endl;
         return;
