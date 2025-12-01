@@ -13,6 +13,7 @@ public:
 	void checkGrid();
 	void LawAlive(int x, int y);
 	void LawDead(int x, int y);
+	void randomizeGrid();
 	void launchGame();
 	Grid* grid;
 };

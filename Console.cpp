@@ -15,13 +15,12 @@ void Console::play(int a){
 }
 
 void Console::load(){
-    std::string file;
-    std::cout << "Indiquez le chemin du fichier dans lequel vous voulez enregistrer votre pattern." << std::endl;
-    std::cin >> file;
+    std::cout << "Indiquez le chemin du fichier depuis lequel vous voulez charger votre pattern." << std::endl;
+    std::cin >> this->file;
     if (file == "1") {
         file = "Pattern/Pattern1.txt";
     }
-    std::ifstream load(file, std::ios::in);
+    std::ifstream load(this->file, std::ios::in);
     if (!load) {
         std::cerr << "Impossible d'ouvrir le fichier de pattern !" << std::endl;
         return;
@@ -59,13 +58,7 @@ void Console::load(){
 }
 
 void Console::save() {
-    std::string file;
-    std::cout << "Indiquez le chemin du fichier dans lequel vous voulez enregistrer votre pattern." << std::endl;
-    std::cin >> file;
-    if (file == "1") {
-        file = "Pattern/Pattern1.txt";
-    }
-    std::ofstream save(file, std::ios::out | std::ios::trunc);
+    std::ofstream save((this->file + "_out"), std::ios::out | std::ios::trunc);
     if (!save) {
         std::cerr << "Impossible d'ouvrir le fichier !" << std::endl;
         return;
@@ -93,7 +86,8 @@ void Console::menu() {
     std::cout << "1: Lancer le jeu" << std::endl;
     std::cout << "2: Sauvegarder" << std::endl;
     std::cout << "3: Charger" << std::endl;
-    std::cout << "4: Quitter" << std::endl;
+    std::cout << "4: Générer aléatoirement la grille" << std::endl;
+    std::cout << "5: Quitter" << std::endl;
     int choix;
     std::cin >> choix;
     switch (choix){
@@ -110,6 +104,9 @@ void Console::menu() {
         load();
         break;
     case 4:
+        game->randomizeGrid();
+        break;
+    case 5:
         exit(0);
         break;
     default:

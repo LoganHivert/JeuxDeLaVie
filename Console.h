@@ -6,6 +6,7 @@ class Game;
 
 class Console {
 public:
+	std::string file;
 	Console(Game* g);
 	void menu();
 	void play(int a);

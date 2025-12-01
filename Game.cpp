@@ -54,3 +54,11 @@ void Game::launchGame() {
 	delete this->grid;
 	this->grid = nullptr;
 }
+
+void Game::randomizeGrid() {
+	for (int i = 0; i < ROWS; ++i) {
+		for (int j = 0; j < COLS; ++j) {
+			grid->cells[i][j].alive=std::rand() % 2;
+		}
+	}
+}
