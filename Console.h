@@ -8,6 +8,7 @@ class Console {
 public:
 	std::string file;
 	Console(Game* g);
+	void saveVoid();
 	void menu();
 	void play(int a);
 	void load();

@@ -58,7 +58,8 @@ void Console::load(){
 }
 
 void Console::save() {
-    std::ofstream save((this->file + "_out"), std::ios::out | std::ios::trunc);
+    this->file.erase(this->file.size() - 4);
+    std::ofstream save((this->file + "_out.txt"), std::ios::out | std::ios::trunc);
     if (!save) {
         std::cerr << "Impossible d'ouvrir le fichier !" << std::endl;
         return;
@@ -78,35 +79,62 @@ void Console::save() {
     }
 }
 
+void Console::saveVoid() {
+    std::cout << "Indiquez ou vous voulez créer votre fichier vide" << std::endl;
+    std::cin >> this->file;
+    std::ofstream savevoid((this->file), std::ios::out | std::ios::trunc);
+    if (!savevoid) {
+        std::cerr << "Impossible d'ouvrir le fichier !" << std::endl;
+        return;
+    }
+    if (!game || !game->grid) {
+        std::cerr << "Pas de grille à sauvegarder !" << std::endl;
+        return;
+    }
+
+    savevoid << ROWS << std::endl;
+    savevoid << COLS << std::endl << std::endl;
+    for (int i = 0; i < ROWS; ++i) {
+        for (int j = 0; j < COLS; ++j) {
+            savevoid << game->grid->getCell(i, j);
+        }
+        savevoid << std::endl;
+    }
+}
+
 void Console::menu() {
 	std::cout << "           ###################" << std::endl;
 	std::cout << "           #  Jeu de la vie  #" << std::endl;
 	std::cout << "           ###################" << std::endl << std::endl;
 	std::cout << "par Logan et Raphaël" << std::endl << std::endl;
-    std::cout << "1: Lancer le jeu" << std::endl;
-    std::cout << "2: Sauvegarder" << std::endl;
-    std::cout << "3: Charger" << std::endl;
-    std::cout << "4: Générer aléatoirement la grille" << std::endl;
-    std::cout << "5: Quitter" << std::endl;
+    std::cout << "1: créer un nouveau fichier" << std::endl;
+    std::cout << "2: Lancer le jeu" << std::endl;
+    std::cout << "3: Sauvegarder" << std::endl;
+    std::cout << "4: Charger" << std::endl;
+    std::cout << "5: Générer aléatoirement la grille" << std::endl;
+    std::cout << "6: Quitter" << std::endl;
     int choix;
     std::cin >> choix;
     switch (choix){
     case 1:
+        saveVoid();
+        break;
+    case 2:
         int nbtour;
         std::cout << "Indiquez le nombre de tour que vous désirez effectuer:" << std::endl;
         std::cin >> nbtour;
         play(nbtour);
         break;
-    case 2:
+    case 3:
         save();
         break;
-    case 3:
+    case 4:
         load();
         break;
-    case 4:
+    case 5:
         game->randomizeGrid();
         break;
-    case 5:
+    case 6:
         exit(0);
         break;
     default:
