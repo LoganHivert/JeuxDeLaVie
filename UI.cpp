@@ -2,56 +2,30 @@
 #include "Cells.h"
 #include <SFML/Graphics.hpp>
 #include "grid.h"
+#include "GridGenerate.h"
+#include "View.h"
 
-// Fonction utilitaire pour générer les lignes de la grille
-std::vector<sf::RectangleShape> createGridLines(const Grid& grid) {
-    std::vector<sf::RectangleShape> gridLines;
 
-    // Lignes verticales
-    for (int x = 0; x <= grid.cols; ++x) {
-        float px = x * CELL_SIZE;
-        sf::RectangleShape line(sf::Vector2f(1.f, static_cast<float>(grid.WindowsLength)));
-        line.setPosition(sf::Vector2f(px, 0.f));
-        line.setFillColor(sf::Color(150, 150, 150));
-        gridLines.push_back(line);
-    }
+Grid grid;
+GridGenerate gridGenerate;
 
-    // Lignes horizontales
-    for (int y = 0; y <= grid.rows; ++y) {
-        float py = y * CELL_SIZE;
-        sf::RectangleShape line(sf::Vector2f(static_cast<float>(grid.WindowsWidth), 1.f));
-        line.setPosition(sf::Vector2f(0.f, py));
-        line.setFillColor(sf::Color(150, 150, 150));
-        gridLines.push_back(line);
-    }
-
-    return gridLines;
-}
 
 void UI::Windows() {
-    // Initialisation de la grille
-    Grid grid(100, 100);
 
     // Création de la fenêtre SFML
     sf::RenderWindow window(
-        sf::VideoMode({
-            static_cast<unsigned int>(800),
-            static_cast<unsigned int>(800)
-            }),
+        sf::VideoMode({1000u, 1000u}),
         "Game of Life"
     );
 
-        float viewWidth = static_cast<float>(grid.cols) * static_cast<float>(CELL_SIZE);
-    float viewHeight = static_cast<float>(grid.rows) * static_cast<float>(CELL_SIZE);
-
   
     sf::View view;
-	view.setCenter(sf::Vector2f(viewWidth / 2.f, viewHeight / 2.f)); //centrer la vue
-    view.setSize(sf::Vector2f(viewWidth, viewHeight));
-    window.setView(view);
+    View Zoom;
+    
+    Zoom.initialisation(window, view, 4.f); //fenetre zoomer
 
     // Génération des lignes de la grille
-    std::vector<sf::RectangleShape> gridLines = createGridLines(grid);
+    std::vector<sf::RectangleShape> gridLines = gridGenerate.createGridLines(grid);
 
 	// Boucle windows principale
     while (window.isOpen()) {
@@ -72,44 +46,25 @@ void UI::Windows() {
                 int y = static_cast<int>(worldPos.y / CELL_SIZE);
 
                 // Vérifier que les coordonnées sont valides
-                if (x >= 0 && x < grid.cols && y >= 0 && y < grid.rows) {
-                    int index = y * grid.cols + x;
-                    if (grid.cellGraph[index].getFillColor() == sf::Color::Black)
-                        grid.cellGraph[index].setFillColor(sf::Color::White); // vivante
+                if (x >= 0 && x < COLS && y >= 0 && y < ROWS) {
+                    Cell& cell = grid.cells[y][x]; // accès direct à la cellule
+                    if (cell.shape.getFillColor() == sf::Color::Black)
+                        cell.shape.setFillColor(sf::Color::White); // vivante
                     else
-                        grid.cellGraph[index].setFillColor(sf::Color::Black); // morte
+                        cell.shape.setFillColor(sf::Color::Black); // morte
                 }
             }
 
-            // Zoom avec la molette
-            if (auto wheel = event->getIf<sf::Event::MouseWheelScrolled>()) {
- 
-
-                // Récupérer la taille actuelle de la vue
-                sf::Vector2f size = view.getSize();
-
-                if (wheel->delta > 0) {
-                    // Zoom avant
-                    if (size.x > MinZoom) {
-                        view.zoom(0.9f);
-                    }
-                }
-                else {
-                    // Zoom arrière
-                    if (size.x < MaxZoom) {
-                        view.zoom(1.1f);
-                    }
-                }
-
-                window.setView(view);
-            }
+            Zoom.ZoomView(event, window, view); // Gestion du zoom
         }
 
         window.clear(sf::Color::Black);
 
         // Dessiner toutes les cellules
-        for (auto& shape : grid.cellGraph) {
-            window.draw(shape);
+        for (auto& row : grid.cells) {
+            for (auto& cell : row) {
+                window.draw(cell.shape);
+            }
         }
 
         // Dessiner les lignes de la grille
