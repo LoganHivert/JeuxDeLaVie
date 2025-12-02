@@ -1,6 +1,7 @@
 #include "Game.h"
 #include "Grid.h"
 #include "UI.h"
+#include <SFML/Graphics.hpp>
 
 
 Game::Game(Grid* g) : grid(g) {}
@@ -17,7 +18,15 @@ void Game::checkGrid() {
 		}
 	}
 	for (int i = 0; i < tempChange.size(); ++i) {
-		grid->cells[tempChange[i].getPosX()][tempChange[i].getPosY()].alive = tempChange[i].alive;
+		int x = tempChange[i].getPosX();
+		int y = tempChange[i].getPosY();
+		grid->cells[x][y].alive = tempChange[i].alive;
+		if (tempChange[i].alive) {
+			grid->cells[x][y].shape.setOutlineColor(sf::Color(150, 150, 150));
+		}
+		else {
+			grid->cells[x][y].shape.setOutlineColor(sf::Color::Black);
+		}
 	}
 	tempChange.clear();
 	return;
@@ -57,6 +66,8 @@ void Game::launchGame() {
 	case 1:
 		while (1)
 		{
+			//UI ui;
+			//ui.Windows();
 			console.menu();
 		}
 		break;

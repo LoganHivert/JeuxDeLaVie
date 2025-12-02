@@ -58,8 +58,9 @@ void Console::load(){
 }
 
 void Console::save() {
-    this->file.erase(this->file.size() - 4);
-    std::ofstream save((this->file + "_out.txt"), std::ios::out | std::ios::trunc);
+    std::string tempFile = this->file;
+    tempFile.erase(this->file.size() - 4);
+    std::ofstream save((tempFile + "_out.txt"), std::ios::out | std::ios::trunc);
     if (!save) {
         std::cerr << "Impossible d'ouvrir le fichier !" << std::endl;
         return;

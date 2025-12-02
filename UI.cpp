@@ -4,14 +4,15 @@
 #include "grid.h"
 #include "GridGenerate.h"
 #include "View.h"
-
-
-Grid grid;
-GridGenerate gridGenerate;
+#include <fstream>
+#include <string>
+#include <iostream>
 
 
 void UI::Windows() {
 
+    Grid grid;
+    GridGenerate gridGenerate;
     // Création de la fenêtre SFML
     sf::RenderWindow window(
         sf::VideoMode({1000u, 1000u}),
@@ -29,7 +30,8 @@ void UI::Windows() {
 
 	// Boucle windows principale
     while (window.isOpen()) {
-        while (auto event = window.pollEvent()) {
+        std::optional<sf::Event> event;
+        while ((event = window.pollEvent()).has_value()) {
             if (event->is<sf::Event::Closed>()) {
                 window.close();
             }
@@ -48,10 +50,14 @@ void UI::Windows() {
                 // Vérifier que les coordonnées sont valides
                 if (x >= 0 && x < COLS && y >= 0 && y < ROWS) {
                     Cell& cell = grid.cells[y][x]; // accès direct à la cellule
-                    if (cell.shape.getFillColor() == sf::Color::Black)
+                    if (!cell.alive) {
                         cell.shape.setFillColor(sf::Color::White); // vivante
-                    else
+                        cell.alive = true;
+                    }
+                    else {
                         cell.shape.setFillColor(sf::Color::Black); // morte
+                        cell.alive = false;
+                    }
                 }
             }
 
