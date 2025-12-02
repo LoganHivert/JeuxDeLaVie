@@ -1,7 +1,9 @@
 #pragma once
 
+class Grid;
+
 class UI{
 public :
-    void Windows();
+    void Windows(Grid* grid);
 };
 

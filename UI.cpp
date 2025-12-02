@@ -9,9 +9,7 @@
 #include <iostream>
 
 
-void UI::Windows() {
-
-    Grid grid;
+void UI::Windows(Grid* grid) {
     GridGenerate gridGenerate;
     // Création de la fenêtre SFML
     sf::RenderWindow window(
@@ -26,7 +24,7 @@ void UI::Windows() {
     Zoom.initialisation(window, view, 4.f); //fenetre zoomer
 
     // Génération des lignes de la grille
-    std::vector<sf::RectangleShape> gridLines = gridGenerate.createGridLines(grid);
+    std::vector<sf::RectangleShape> gridLines = gridGenerate.createGridLines(*grid);
 
 	// Boucle windows principale
     while (window.isOpen()) {
@@ -49,7 +47,7 @@ void UI::Windows() {
 
                 // Vérifier que les coordonnées sont valides
                 if (x >= 0 && x < COLS && y >= 0 && y < ROWS) {
-                    Cell& cell = grid.cells[y][x]; // accès direct à la cellule
+                    Cell& cell = grid->cells[y][x]; // accès direct à la cellule
                     if (!cell.alive) {
                         cell.shape.setFillColor(sf::Color::White); // vivante
                         cell.alive = true;
@@ -67,7 +65,7 @@ void UI::Windows() {
         window.clear(sf::Color::Black);
 
         // Dessiner toutes les cellules
-        for (auto& row : grid.cells) {
+        for (auto& row : grid->cells) {
             for (auto& cell : row) {
                 window.draw(cell.shape);
             }

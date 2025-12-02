@@ -55,7 +55,7 @@ void Game::LawDead(int x, int y) {
 }
 
 void Game::launchGame() {
-	this-> grid = new Grid();
+	this->grid = new Grid();
 	Console console(this);
 	std::cout << "Mode de lancement:" << std::endl;
 	std::cout << "1: Console" << std::endl;
@@ -73,7 +73,9 @@ void Game::launchGame() {
 		break;
 	case 2:
 		UI ui;
-		ui.Windows();
+		console.menu();
+		ui.Windows(this->grid);
+		console.menu();
 	}
 	delete this->grid;
 	this->grid = nullptr;
