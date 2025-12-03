@@ -1,8 +1,9 @@
 #include "UI.h"
 #include "Game.h"
+#include "StartGame.h"
 
 int main() {
-    Game game(nullptr);
-    game.launchGame();
+    StartGame StartGame;
+    StartGame.launchGame();
     return 0;
 } 

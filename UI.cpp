@@ -4,10 +4,8 @@
 #include "grid.h"
 #include "GridGenerate.h"
 #include "View.h"
-#include <fstream>
-#include <string>
-#include <iostream>
 
+UI::UI() : Game(nullptr) {}
 
 void UI::Windows(Grid* grid) {
     GridGenerate gridGenerate;
@@ -78,4 +76,8 @@ void UI::Windows(Grid* grid) {
 
         window.display();
     }
+}
+
+void UI::gameRun(){
+    Windows(grid);
 }

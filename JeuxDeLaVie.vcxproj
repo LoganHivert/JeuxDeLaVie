@@ -147,6 +147,7 @@
     <ClCompile Include="Grid.cpp" />
     <ClCompile Include="GridGenerate.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="StartGame.cpp" />
     <ClCompile Include="UI.cpp" />
     <ClCompile Include="View.cpp" />
   </ItemGroup>
@@ -156,6 +157,7 @@
     <ClInclude Include="Game.h" />
     <ClInclude Include="Grid.h" />
     <ClInclude Include="GridGenerate.h" />
+    <ClInclude Include="StartGame.h" />
     <ClInclude Include="UI.h" />
     <ClInclude Include="View.h" />
   </ItemGroup>

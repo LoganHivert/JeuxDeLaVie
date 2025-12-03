@@ -57,6 +57,9 @@
     <ClCompile Include="Console.cpp">
       <Filter>Source Files\MAIN</Filter>
     </ClCompile>
+    <ClCompile Include="StartGame.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Cells.h">
@@ -79,6 +82,9 @@
     </ClInclude>
     <ClInclude Include="Console.h">
       <Filter>Header Files\MAIN</Filter>
+    </ClInclude>
+    <ClInclude Include="StartGame.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
