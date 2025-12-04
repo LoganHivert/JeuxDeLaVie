@@ -29,14 +29,40 @@ void UI::gameRun() {
             if (auto mouse = event->getIf<sf::Event::MouseButtonPressed>()) {
                 handleCellClick(grid, this->window, *mouse);
             }
+            if (auto key = event->getIf<sf::Event::KeyPressed>()) {
+                if (key->code == sf::Keyboard::Key::Space) {
+                    Run=!Run;
+                }
+            }
+            if (auto key = event->getIf<sf::Event::KeyPressed>()) {
+                if (key->code == sf::Keyboard::Key::Escape) {
+                    exit(0);
+                }
+            }
+            if (auto key = event->getIf<sf::Event::KeyPressed>()) {
+                if (key->code == sf::Keyboard::Key::S) {
+                    save();
+                }
+            }
+            if (auto key = event->getIf<sf::Event::KeyPressed>()) {
+                if (key->code == sf::Keyboard::Key::R) {
+                    randomizeGrid();
+                }
+            }
+            if (auto key = event->getIf<sf::Event::KeyPressed>()) {
+                if (key->code == sf::Keyboard::Key::L) {
+                    load();
+                }
+            }
             Zoom.ZoomView(event, this->window, view);
             //NON on doit gérer la view dans Zoom
 			//on doit faire le if "ici" et envoyer a zoom un truc genre zoom.zoomIn() ou zoom.zoomOut() 
             // ou zoom.zoom(boolean ou enum up / down)
         }
-        this->checkGrid();
+        if (Run) {
+            this->checkGrid();
+        }
         displayWindow(this->window, this->grid);
-
     }
 }
 

@@ -26,6 +26,6 @@ public :
     void handleCellClick(Grid* grid, sf::RenderWindow& window, const sf::Event::MouseButtonPressed& mouse);
     void displayWindow(sf::RenderWindow& window, Grid* grid);
     void gameRun() override;
-    //void Windows(Grid* grid);
+    bool Run;
 };
 
