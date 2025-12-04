@@ -4,6 +4,7 @@
 #include "grid.h"
 #include "GridGenerate.h"
 #include "View.h"
+#include "Bouton.h"
 
 UI::UI() : Game(nullptr) {}
 
@@ -14,6 +15,10 @@ void UI::Windows(Grid* grid) {
         sf::VideoMode({1000u, 1000u}),
         "Game of Life"
     );
+
+    sf::Font font; 
+
+    Button monBouton(300, 250, 200, 100, font, "Cliquez ici!");
 
   
     sf::View view;

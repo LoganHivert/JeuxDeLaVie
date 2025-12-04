@@ -141,6 +141,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Bouton.cpp" />
     <ClCompile Include="Cells.cpp" />
     <ClCompile Include="Console.cpp" />
     <ClCompile Include="Game.cpp" />
@@ -152,6 +153,7 @@
     <ClCompile Include="View.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Bouton.h" />
     <ClInclude Include="Cells.h" />
     <ClInclude Include="Console.h" />
     <ClInclude Include="Game.h" />
@@ -160,6 +162,10 @@
     <ClInclude Include="StartGame.h" />
     <ClInclude Include="UI.h" />
     <ClInclude Include="View.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <Font Include="LEMONMILK-Regular.otf" />
+    <Font Include="Roboto_Condensed-Bold.ttf" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -60,6 +60,9 @@
     <ClCompile Include="StartGame.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Bouton.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Cells.h">
@@ -86,5 +89,16 @@
     <ClInclude Include="StartGame.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Bouton.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <Font Include="Roboto_Condensed-Bold.ttf">
+      <Filter>Resource Files</Filter>
+    </Font>
+    <Font Include="LEMONMILK-Regular.otf">
+      <Filter>Resource Files</Filter>
+    </Font>
   </ItemGroup>
 </Project>
