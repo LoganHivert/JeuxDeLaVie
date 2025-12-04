@@ -15,9 +15,36 @@ void UI::gameRun() {
             if (auto mouse = event->getIf<sf::Event::MouseButtonPressed>()) {
                 handleCellClick(grid, this->window, *mouse);
             }
+            if (auto key = event->getIf<sf::Event::KeyPressed>()) {
+                if (key->code == sf::Keyboard::Key::Space) {
+                    Run=!Run;
+                }
+            }
+            if (auto key = event->getIf<sf::Event::KeyPressed>()) {
+                if (key->code == sf::Keyboard::Key::Escape) {
+                    exit(0);
+                }
+            }
+            if (auto key = event->getIf<sf::Event::KeyPressed>()) {
+                if (key->code == sf::Keyboard::Key::S) {
+                    save();
+                }
+            }
+            if (auto key = event->getIf<sf::Event::KeyPressed>()) {
+                if (key->code == sf::Keyboard::Key::R) {
+                    randomizeGrid();
+                }
+            }
+            if (auto key = event->getIf<sf::Event::KeyPressed>()) {
+                if (key->code == sf::Keyboard::Key::L) {
+                    load();
+                }
+            }
             Zoom.ZoomView(event, this->window, view);
         }
-        this->checkGrid();
+        if (Run) {
+            this->checkGrid();
+        }
         displayWindow(this->window, this->grid);
     }
 }
@@ -75,6 +102,5 @@ void UI::displayWindow(sf::RenderWindow& window, Grid* grid) {
             window.draw(cell.shape);
         }
     }
-
     window.display();
 }
