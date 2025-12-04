@@ -7,6 +7,8 @@
 #include "grid.h"
 #include "View.h"
 #include "Cells.h"
+#include <SFML/Graphics.hpp>
+#include "Bouton.h"
 
 class Grid;
 
@@ -17,6 +19,8 @@ public :
     sf::View view;
     View Zoom;
     sf::RenderWindow window;
+    Button* monBouton = nullptr;
+
     UI();
     void initializeWindow();
     void handleCellClick(Grid* grid, sf::RenderWindow& window, const sf::Event::MouseButtonPressed& mouse);

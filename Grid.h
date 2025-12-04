@@ -13,6 +13,6 @@ public:
 
     int getVoisinage(int x, int y);
     int getCell(int x, int y);
-    int WindowsLength;
+    int WindowsLength;//Ici c'est width / height, pas de windows, pas de taille > taille dans GridRenderer
     int WindowsWidth;
 };

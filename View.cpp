@@ -31,6 +31,6 @@ void View::ZoomView(std::optional<sf::Event>& event, sf::RenderWindow& window, s
 		else {// Zoom arrière
 			if (size.x < MaxZoom) view.zoom(1.1f);// reduit la vue
         }
-        window.setView(view);
+        //window.setView(view);
     }
 }

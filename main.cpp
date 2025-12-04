@@ -3,7 +3,6 @@
 #include "StartGame.h"
 
 int main() {
-
     StartGame StartGame;
     StartGame.launchGame();
     return 0;

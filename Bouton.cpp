@@ -19,10 +19,12 @@ Button::Button(float x, float y, float width, float height, sf::Font& font, cons
     text.setPosition({ x + width / 2.f, y + height / 2.f });
 }
 
-bool Button::isClicked(const sf::Event& event) {
+bool Button::isClicked(const sf::Event& event) {//TODO on devrait recevoir direct un vector2f
     if (const auto* mouse = event.getIf<sf::Event::MouseButtonPressed>()) {
-        sf::Vector2f mousePos(static_cast<float>(mouse->position.x),
-            static_cast<float>(mouse->position.y));
+        sf::Vector2f mousePos(
+            static_cast<float>(mouse->position.x),
+            static_cast<float>(mouse->position.y)
+        );
         return shape.getGlobalBounds().contains(mousePos);
     }
     return false;

@@ -1,9 +1,23 @@
 #include "UI.h"
-#include <SFML/Graphics.hpp>
+
 
 UI::UI() : Game(nullptr) {}
 
 void UI::gameRun() {
+
+    std::filesystem::path p("C:\\Users\\legam\\Desktop\\JeuxDeLaVie\\Roboto_Condensed-Bold.ttf");
+    if (std::filesystem::exists(p)) {
+        std::cout << "OK" << std::endl;
+
+    }
+    sf::Font font;
+    
+    if (!font.openFromFile(p)) {
+        std::cout << "Erreur lors du chargement de la police." << std::endl;
+        return;
+    }
+    this->monBouton = new Button(300, 250, 200, 100, font, "Cliquez ici!");
+
     initializeWindow();
     //randomizeGrid();
     while (window.isOpen()){
@@ -16,9 +30,13 @@ void UI::gameRun() {
                 handleCellClick(grid, this->window, *mouse);
             }
             Zoom.ZoomView(event, this->window, view);
+            //NON on doit gérer la view dans Zoom
+			//on doit faire le if "ici" et envoyer a zoom un truc genre zoom.zoomIn() ou zoom.zoomOut() 
+            // ou zoom.zoom(boolean ou enum up / down)
         }
         this->checkGrid();
         displayWindow(this->window, this->grid);
+
     }
 }
 
@@ -64,6 +82,8 @@ void UI::displayWindow(sf::RenderWindow& window, Grid* grid) {
     window.clear(sf::Color::Black);
     window.setView(view);
 
+    //NON dans GridRenderer
+
     // Dessiner les lignes de la grille
     for (auto& line : gridLines) {
         window.draw(line);
@@ -75,6 +95,8 @@ void UI::displayWindow(sf::RenderWindow& window, Grid* grid) {
             window.draw(cell.shape);
         }
     }
+
+    this->monBouton->draw(window);
 
     window.display();
 }
