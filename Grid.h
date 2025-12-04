@@ -1,7 +1,7 @@
 #pragma once
 #include "Cells.h"
 #include <vector>
-const int ROWS = 100;
+const int ROWS = 100; 
 const int COLS = 100;
 
 class Grid {
