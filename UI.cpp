@@ -5,7 +5,7 @@ UI::UI() : Game(nullptr) {}
 
 void UI::gameRun() {
     initializeWindow();
-    randomizeGrid();
+    //randomizeGrid();
     while (window.isOpen()){
         std::optional<sf::Event> event;
         while ((event = this->window.pollEvent()).has_value()) {
@@ -63,16 +63,17 @@ void UI::handleCellClick(Grid* grid, sf::RenderWindow& window, const sf::Event::
 void UI::displayWindow(sf::RenderWindow& window, Grid* grid) {
     window.clear(sf::Color::Black);
     window.setView(view);
+
+    // Dessiner les lignes de la grille
+    for (auto& line : gridLines) {
+        window.draw(line);
+    }
+
     // Dessiner toutes les cellules
     for (auto& row : grid->cells) {
         for (auto& cell : row) {
             window.draw(cell.shape);
         }
-    }
-
-    // Dessiner les lignes de la grille
-    for (auto& line : gridLines) {
-        window.draw(line);
     }
 
     window.display();
