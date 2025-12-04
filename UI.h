@@ -14,17 +14,20 @@ class Grid;
 
 class UI: public Game{
 public :
+    Cell* cell;
     GridGenerate gridGenerate;
     std::vector<sf::RectangleShape> gridLines;
     View Zoom;
     sf::RenderWindow window;
     Button* monBouton = nullptr;
+    bool Run;
 
     UI();
     void initializeWindow();
     void handleCellClick(Grid* grid, sf::RenderWindow& window, const sf::Event::MouseButtonPressed& mouse);
     void displayWindow(sf::RenderWindow& window, Grid* grid);
     void gameRun() override;
-    bool Run;
+    int getPosXUi();
+    int getPosYUi();
 };
 

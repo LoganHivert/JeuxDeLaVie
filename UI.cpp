@@ -1,11 +1,19 @@
 #include "UI.h"
 
 
-UI::UI() : Game(nullptr) {}
+UI::UI() : Game(nullptr), cell(nullptr) {}
+
+int UI::getPosXUi() {
+    return (cell->getPosX() * CELL_SIZE);
+}
+
+int UI::getPosYUi() {
+    return (cell->getPosY() * CELL_SIZE);
+}
 
 void UI::gameRun() {
 
-    std::filesystem::path p("C:\\Users\\legam\\Desktop\\JeuxDeLaVie\\Roboto_Condensed-Bold.ttf");
+    std::filesystem::path p("Font/Roboto_Condensed-Bold.ttf");
     if (std::filesystem::exists(p)) {
         std::cout << "OK" << std::endl;
 
@@ -78,13 +86,14 @@ void UI::initializeWindow() {
     gridLines = gridGenerate.createGridLines(*grid);
     for (int y = 0; y < ROWS; y++) {
         for (int x = 0; x < COLS; x++) {
-            Cell& cell = grid->cells[y][x];
-            cell.shape.setPosition(sf::Vector2f(static_cast<float>(cell.getPosXUi()), static_cast<float>(cell.getPosYUi())));
-            cell.shape.setSize(sf::Vector2f(CELL_SIZE, CELL_SIZE));
-            cell.shape.setFillColor(cell.alive ? sf::Color::White : sf::Color::Black);
+            cell = &grid->cells[y][x];
+            cell->shape.setPosition(sf::Vector2f(static_cast<float>(getPosXUi()), static_cast<float>(getPosYUi())));
+            cell->shape.setSize(sf::Vector2f(CELL_SIZE, CELL_SIZE));
+            cell->shape.setFillColor(cell->alive ? sf::Color::White : sf::Color::Black);
             
         }
     }
+    Run = false;
 }
 
 void UI::handleCellClick(Grid* grid, sf::RenderWindow& window, const sf::Event::MouseButtonPressed& mouse) {
