@@ -8,8 +8,11 @@ public:
     float viewWidth;
     float viewHeight;
     View();
-    void initialisation(sf::RenderWindow& window, sf::View& view, float initialScale);
-    void ZoomView(std::optional<sf::Event>& event, sf::RenderWindow& window, sf::View& view);
+    sf::View view;
+    void zoomIn(sf::RenderWindow& window);
+    void zoomOut(sf::RenderWindow& window);
+    void initialisation(sf::RenderWindow& window, float initialScale);
+    //void ZoomView(std::optional<sf::Event>& event, sf::RenderWindow& window, sf::View& view);
 };
 
 

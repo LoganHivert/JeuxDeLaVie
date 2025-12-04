@@ -16,7 +16,6 @@ class UI: public Game{
 public :
     GridGenerate gridGenerate;
     std::vector<sf::RectangleShape> gridLines;
-    sf::View view;
     View Zoom;
     sf::RenderWindow window;
     Button* monBouton = nullptr;

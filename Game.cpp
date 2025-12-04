@@ -162,5 +162,5 @@ void Game::saveVoid() {
 }
 
 void Game::gameRun(){
-//TODO WHAT ?
+//TODO WHAT ? virer lerritage
 }

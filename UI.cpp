@@ -54,10 +54,15 @@ void UI::gameRun() {
                     load();
                 }
             }
-            Zoom.ZoomView(event, this->window, view);
-            //NON on doit gérer la view dans Zoom
-			//on doit faire le if "ici" et envoyer a zoom un truc genre zoom.zoomIn() ou zoom.zoomOut() 
-            // ou zoom.zoom(boolean ou enum up / down)
+
+            if (auto wheel = event->getIf<sf::Event::MouseWheelScrolled>()) { //zoom
+                if (wheel->delta > 0) {// Zoom avant
+					Zoom.zoomIn(window);
+                }
+                else {// Zoom arrière
+					Zoom.zoomOut(window);
+                }
+            }
         }
         if (Run) {
             this->checkGrid();
@@ -69,7 +74,7 @@ void UI::gameRun() {
 void UI::initializeWindow() {
     window.create(sf::VideoMode({ 1000u, 1000u }), "Game of Life");
 
-    Zoom.initialisation(window, view, 4.f);
+    Zoom.initialisation(window, 4.f);
     gridLines = gridGenerate.createGridLines(*grid);
     for (int y = 0; y < ROWS; y++) {
         for (int x = 0; x < COLS; x++) {
@@ -106,7 +111,6 @@ void UI::handleCellClick(Grid* grid, sf::RenderWindow& window, const sf::Event::
 
 void UI::displayWindow(sf::RenderWindow& window, Grid* grid) {
     window.clear(sf::Color::Black);
-    window.setView(view);
 
     //NON dans GridRenderer
 
