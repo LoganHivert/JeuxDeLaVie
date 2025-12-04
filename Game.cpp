@@ -22,10 +22,10 @@ void Game::checkGrid() {
 		int y = tempChange[i].getPosY();
 		grid->cells[x][y].alive = tempChange[i].alive;
 		if (tempChange[i].alive) {
-			grid->cells[x][y].shape.setOutlineColor(sf::Color(150, 150, 150));
+			grid->cells[x][y].shape.setFillColor(sf::Color::White);
 		}
 		else {
-			grid->cells[x][y].shape.setOutlineColor(sf::Color::Black);
+			grid->cells[x][y].shape.setFillColor(sf::Color::Black);
 		}
 	}
 	tempChange.clear();

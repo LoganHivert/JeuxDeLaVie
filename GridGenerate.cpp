@@ -30,8 +30,7 @@ std::vector<sf::RectangleShape> GridGenerate::createGridLines(Grid& grid){
     return gridLines;
 }
 
-GridGenerate::GridGenerate(){
-}
+GridGenerate::GridGenerate(){}
 
 
 
