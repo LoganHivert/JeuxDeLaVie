@@ -60,8 +60,11 @@
     <ClCompile Include="StartGame.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="GridSaveLoad.cpp">
+      <Filter>Source Files\GRID</Filter>
+    </ClCompile>
     <ClCompile Include="Bouton.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\MAIN\UI</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -89,16 +92,15 @@
     <ClInclude Include="StartGame.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="GridSaveLoad.h">
+      <Filter>Header Files\GRID</Filter>
+    </ClInclude>
     <ClInclude Include="Bouton.h">
-      <Filter>Header Files</Filter>
+      <Filter>Header Files\MAIN\UI</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <Font Include="Roboto_Condensed-Bold.ttf">
-      <Filter>Resource Files</Filter>
-    </Font>
-    <Font Include="LEMONMILK-Regular.otf">
-      <Filter>Resource Files</Filter>
-    </Font>
+    <Font Include="LEMONMILK-Regular.otf" />
+    <Font Include="Roboto_Condensed-Bold.ttf" />
   </ItemGroup>
 </Project>

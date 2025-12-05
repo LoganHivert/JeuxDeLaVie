@@ -1,5 +1,7 @@
 #include "Console.h"
 #include <algorithm>
+#include "GridSaveLoad.h"
+#include "Grid.h"
 
 Console::Console() : Game(nullptr){}
 
@@ -15,7 +17,8 @@ int Console::menu() {
     return a;
 }
 
-void Console::gameRun() {
+void Console::gameRunConsol() {
+    GridSaveLoad Gload(grid);
     std::cout << "           ###################" << std::endl;
     std::cout << "           #  Jeu de la vie  #" << std::endl;
     std::cout << "           ###################" << std::endl << std::endl;
@@ -23,7 +26,7 @@ void Console::gameRun() {
     while (1) {
         switch (menu()) {
         case 1:
-            this->saveVoid();
+            Gload.saveVoid();
             break;
         case 2:
             int nbtour;
@@ -32,10 +35,10 @@ void Console::gameRun() {
             play(nbtour);
             break;
         case 3:
-            save();
+            Gload.save();
             break;
         case 4:
-            load();
+            Gload.load();
             break;
         case 5:
             this->randomizeGrid();

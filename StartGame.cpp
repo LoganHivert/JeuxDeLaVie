@@ -20,8 +20,10 @@ void StartGame::chooseGame() {
 
 void StartGame::launchGame() {
     chooseGame();
+    UI ui;
     game->grid = new Grid();
-    game->gameRun();
+	GridSaveLoad Gload(game->grid);
+    ui.gameRun();
     delete game->grid;
     game->grid = nullptr;
 }

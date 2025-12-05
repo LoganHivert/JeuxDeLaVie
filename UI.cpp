@@ -1,7 +1,7 @@
 #include "UI.h"
 
 
-UI::UI() : Game(nullptr), cell(nullptr) {}
+UI::UI() : Game(nullptr), cell(nullptr) , gridSaveLoad(nullptr) {}
 
 int UI::getPosXUi() {
     return (cell->getPosX() * CELL_SIZE);
@@ -49,7 +49,7 @@ void UI::gameRun() {
             }
             if (auto key = event->getIf<sf::Event::KeyPressed>()) {
                 if (key->code == sf::Keyboard::Key::S) {
-                    save();
+                    gridSaveLoad.save();
                 }
             }
             if (auto key = event->getIf<sf::Event::KeyPressed>()) {
@@ -59,7 +59,7 @@ void UI::gameRun() {
             }
             if (auto key = event->getIf<sf::Event::KeyPressed>()) {
                 if (key->code == sf::Keyboard::Key::L) {
-                    load();
+                    gridSaveLoad.load();
                 }
             }
 

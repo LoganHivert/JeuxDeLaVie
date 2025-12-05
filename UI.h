@@ -9,12 +9,14 @@
 #include "Cells.h"
 #include <SFML/Graphics.hpp>
 #include "Bouton.h"
+#include "GridSaveLoad.h"
 
 class Grid;
 
 class UI: public Game{
 public :
     Cell* cell;
+	GridSaveLoad gridSaveLoad;
     GridGenerate gridGenerate;
     std::vector<sf::RectangleShape> gridLines;
     View Zoom;
@@ -22,11 +24,13 @@ public :
     Button* monBouton = nullptr;
     bool Run;
 
+
+
     UI();
     void initializeWindow();
     void handleCellClick(Grid* grid, sf::RenderWindow& window, const sf::Event::MouseButtonPressed& mouse);
     void displayWindow(sf::RenderWindow& window, Grid* grid);
-    void gameRun() override;
+    void gameRun();
     int getPosXUi();
     int getPosYUi();
 };
