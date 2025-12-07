@@ -2,6 +2,7 @@
 #include "Bouton.h"
 #include "GridSaveLoad.h"
 #include "Controls.h"
+using namespace std;
 
 void UIRun::gameRun(Grid* _grid) {
     grid = _grid;
@@ -33,5 +34,13 @@ void UIRun::gameRun(Grid* _grid) {
         }
         ui.CheckGridColor(grid);
         ui.displayWindow(grid);
+        gameSpeed();
     }
+}
+
+void UIRun::gameSpeed() {
+    if (game->getSpeed() > 100) {
+        std::this_thread::sleep_for(std::chrono::milliseconds(game->getSpeed()));
+    }
+    return;
 }

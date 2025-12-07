@@ -15,4 +15,8 @@ public:
 	void LawDead(int x, int y, Grid* grid);
 	void randomizeGrid(Grid* grid);
 	void play(int a, Grid* grid);
+	void setSpeed(float coef);
+	int getSpeed();
+private:
+	int speed;
 };

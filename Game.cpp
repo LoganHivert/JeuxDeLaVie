@@ -63,3 +63,12 @@ void Game::play(int a, Grid* grid) {
         this->checkGrid(grid);
     }
 }
+
+void Game::setSpeed(float coef) {
+	this->speed *= coef;
+	return;
+}
+
+int Game::getSpeed() {
+	return this->speed;
+}
