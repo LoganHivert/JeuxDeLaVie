@@ -1,4 +1,5 @@
 #include "Cells.h"
+#include "Constantes.h"
 
 Cell::Cell(int _x, int _y, bool al) {
 	this->x = _x;

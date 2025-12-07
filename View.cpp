@@ -3,6 +3,10 @@
 #include <SFML/Window.hpp>
 #include "grid.h"
 #include "Cells.h"
+#include "Constantes.h"
+
+// Affiche les valeurs à la compilation
+#pragma message("CELL_SIZE = " CELL_SIZE)
 
 View::View() {
     viewWidth = static_cast<float>(COLS) * static_cast<float>(CELL_SIZE);

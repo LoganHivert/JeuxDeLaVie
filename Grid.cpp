@@ -1,5 +1,6 @@
 #include "grid.h"
 #include "Cells.h"
+#include "Constantes.h"
 
 Grid::Grid() {
 

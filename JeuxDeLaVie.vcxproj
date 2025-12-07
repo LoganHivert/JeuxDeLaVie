@@ -144,6 +144,8 @@
     <ClCompile Include="Bouton.cpp" />
     <ClCompile Include="Cells.cpp" />
     <ClCompile Include="Console.cpp" />
+    <ClCompile Include="ConsoleRun.cpp" />
+    <ClCompile Include="Controls.cpp" />
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="Grid.cpp" />
     <ClCompile Include="GridGenerate.cpp" />
@@ -151,18 +153,23 @@
     <ClCompile Include="main.cpp" />
     <ClCompile Include="StartGame.cpp" />
     <ClCompile Include="UI.cpp" />
+    <ClCompile Include="UIRun.cpp" />
     <ClCompile Include="View.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Bouton.h" />
     <ClInclude Include="Cells.h" />
     <ClInclude Include="Console.h" />
+    <ClInclude Include="ConsoleRun.h" />
+    <ClInclude Include="Constantes.h" />
+    <ClInclude Include="Controls.h" />
     <ClInclude Include="Game.h" />
     <ClInclude Include="Grid.h" />
     <ClInclude Include="GridGenerate.h" />
     <ClInclude Include="GridSaveLoad.h" />
     <ClInclude Include="StartGame.h" />
     <ClInclude Include="UI.h" />
+    <ClInclude Include="UIRun.h" />
     <ClInclude Include="View.h" />
   </ItemGroup>
   <ItemGroup>

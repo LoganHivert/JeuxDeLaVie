@@ -2,13 +2,12 @@
 #include "Cells.h"
 #include <SFML/Graphics.hpp>
 #include "grid.h"
+#include "Constantes.h"
 
 // Initialisation de la grille
 
 std::vector<sf::RectangleShape> GridGenerate::createGridLines(Grid& grid){
     std::vector<sf::RectangleShape> gridLines;
-
-
     // Lignes verticales
     for (float x = 0; x <= COLS; ++x) {
         float px = x * CELL_SIZE;

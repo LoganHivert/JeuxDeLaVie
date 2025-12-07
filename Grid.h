@@ -1,8 +1,7 @@
 #pragma once
 #include "Cells.h"
 #include <vector>
-const int ROWS = 100; 
-const int COLS = 100; //modifier car taille de la grille
+ //modifier car taille de la grille
 
 class Grid {
 public:

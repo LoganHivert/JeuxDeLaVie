@@ -1,16 +1,16 @@
 #include "Game.h"
 #include "Grid.h"
-
+#include "Constantes.h"
 #include "UI.h"
 #include <SFML/Graphics.hpp>
 
 
-Game::Game(Grid* g) : grid(g) {}
+Game::Game(Grid* g){}
 
 void Game::checkGrid() {
 	for (int i = 0; i < ROWS; ++i) {
 		for (int j = 0; j < COLS; ++j) {
-			if (grid->cells[i][j].alive) {
+			if (grid.cells[i][j].alive) {
 				LawAlive(i, j);
 			}
 			else {
@@ -21,12 +21,12 @@ void Game::checkGrid() {
 	for (int i = 0; i < tempChange.size(); ++i) {
 		int x = tempChange[i].getPosX();
 		int y = tempChange[i].getPosY();
-		grid->cells[x][y].alive = tempChange[i].alive;
+		grid.cells[x][y].alive = tempChange[i].alive;
 		if (tempChange[i].alive) {
-			grid->cells[x][y].shape.setFillColor(sf::Color::White);
+			grid.cells[x][y].shape.setFillColor(sf::Color::White);
 		}
 		else {
-			grid->cells[x][y].shape.setFillColor(sf::Color::Black);
+			grid.cells[x][y].shape.setFillColor(sf::Color::Black);
 		}
 	}
 	tempChange.clear();
@@ -34,7 +34,7 @@ void Game::checkGrid() {
 }
 
 void Game::LawAlive(int x, int y) {
-	int nbAlive = grid->getVoisinage(x, y);
+	int nbAlive = grid.getVoisinage(x, y);
 	if (nbAlive >= MiniLawAlive && nbAlive <= MaxiLawAlive) {
 		return;
 	}
@@ -45,7 +45,7 @@ void Game::LawAlive(int x, int y) {
 }
 
 void Game::LawDead(int x, int y) {
-	int nbAlive = grid->getVoisinage(x, y);
+	int nbAlive = grid.getVoisinage(x, y);
 	if (nbAlive == MiniLawDead) {
 		tempChange.emplace_back(x, y, 1);
 		return;
@@ -58,18 +58,13 @@ void Game::LawDead(int x, int y) {
 void Game::randomizeGrid() {
 	for (int i = 0; i < ROWS; ++i) {
 		for (int j = 0; j < COLS; ++j) {
-			grid->cells[i][j].alive=std::rand() % 2;
+			grid.cells[i][j].alive=std::rand() % 2;
 		}
 	}
 }
 
 void Game::play(int a) {
-    if (!this->grid) {
-        std::cerr << "Pas de grille disponible pour jouer !" << std::endl;
-        return;
-    }
     for (int i = 0; i < a; ++i) {
         this->checkGrid();
     }
 }
-

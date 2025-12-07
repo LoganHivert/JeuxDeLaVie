@@ -4,9 +4,10 @@
 #include <string>
 #include <iostream>
 
-class Console : public Game {
+class Console{
 public:
+	Grid grid;
+	Game game;
 	Console();
 	int menu();
-	void gameRunConsol();
 };

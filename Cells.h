@@ -1,6 +1,6 @@
 #pragma once
 #include <SFML/Graphics.hpp>
-const int CELL_SIZE = 30;//dans grille renderer
+//dans grille renderer
 
 class Cell {
 public:

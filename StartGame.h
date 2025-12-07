@@ -1,12 +1,16 @@
 #pragma once
 #include "Game.h"
-#include "Console.h"
-#include "UI.h"
+#include "ConsoleRun.h"
+#include "UIRun.h"
 #include "Grid.h"
+
 
 class StartGame {
 public:
-	Game* game = nullptr;
+	ConsoleRun* gameCons = nullptr;
+	UIRun* gameUi = nullptr;
+	Grid* grid;
+	bool Gtype;
 	StartGame();
 	void chooseGame();
 	void launchGame();

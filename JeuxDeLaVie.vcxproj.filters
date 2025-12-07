@@ -66,6 +66,15 @@
     <ClCompile Include="Bouton.cpp">
       <Filter>Source Files\MAIN\UI</Filter>
     </ClCompile>
+    <ClCompile Include="ConsoleRun.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="UIRun.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Controls.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Cells.h">
@@ -97,6 +106,18 @@
     </ClInclude>
     <ClInclude Include="Bouton.h">
       <Filter>Header Files\MAIN\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="ConsoleRun.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="UIRun.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Controls.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Constantes.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

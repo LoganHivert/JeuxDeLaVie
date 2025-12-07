@@ -10,20 +10,26 @@ void StartGame::chooseGame() {
     std::cin >> choix;
     switch (choix) {
     case 1:
-        game = new Console();
+        Gtype = true;
+        gameCons = new ConsoleRun();
         return;
     case 2:
-        game = new UI();
+        Gtype = false;
+        gameUi = new UIRun();
         return;
     }
 }
 
 void StartGame::launchGame() {
     chooseGame();
-    UI ui;
-    game->grid = new Grid();
-	GridSaveLoad Gload(game->grid);
-    ui.gameRun();
-    delete game->grid;
-    game->grid = nullptr;
+    Game game(this->grid);
+	GridSaveLoad Gload(grid);
+    if (Gtype) {
+        gameCons->gameRun();
+    }
+    else {
+        gameUi->gameRun();
+    }
+    delete grid;
+    grid = nullptr;
 }

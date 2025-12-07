@@ -1,6 +1,7 @@
 #include "GridSaveLoad.h"
 #include "SFML/Graphics.hpp"
 #include "Grid.h"
+#include "Constantes.h"
 #include <fstream>
 #include <iostream>
 
