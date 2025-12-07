@@ -22,6 +22,7 @@ void StartGame::chooseGame() {
 
 void StartGame::launchGame() {
     chooseGame();
+    grid = new Grid();
     Game game(this->grid);
 	GridSaveLoad Gload(grid);
     if (Gtype) {

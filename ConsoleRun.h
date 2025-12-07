@@ -11,6 +11,7 @@ public:
 	Grid* grid;
 	Game* game;
 	GridSaveLoad* Gload;
+	ConsoleRun();
 	bool Run;
 	void gameRun();
 };

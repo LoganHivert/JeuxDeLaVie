@@ -1,9 +1,11 @@
 #include "ConsoleRun.h"
 #include "StartGame.h"
 
+ConsoleRun::ConsoleRun() {
+    grid = new Grid();
+}
 
 void ConsoleRun::gameRun() {
-    grid = new Grid();
     Game game(this->grid);
     Console cons;
     GridSaveLoad Gload(this->grid);

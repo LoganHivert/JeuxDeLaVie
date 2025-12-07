@@ -4,7 +4,6 @@
 #include "Controls.h"
 
 void UIRun::gameRun() {
-    grid = new Grid();
     GridSaveLoad Gload(this->grid);
     Game game(this->grid);
     Controls controls;
@@ -31,6 +30,6 @@ void UIRun::gameRun() {
         if (Run) {
             game.checkGrid();
         }
-        ui.displayWindow(this->ui.window, this->grid);
+        ui.displayWindow(this->grid);
     }
 }

@@ -4,10 +4,10 @@
 Controls::Controls() {}
 void Controls::checkControls(UIRun& UiR) {
     if (event->is<sf::Event::Closed>()) {
-        ui.window.close();
+        UiR.ui.window.close();
     }
     if (auto mouse = event->getIf<sf::Event::MouseButtonPressed>()) {
-        ui.handleCellClick(UiR.grid, ui.window, *mouse);
+        UiR.ui.handleCellClick(UiR.grid, UiR.ui.window, *mouse);
     }
     if (auto key = event->getIf<sf::Event::KeyPressed>()) {
         if (key->code == sf::Keyboard::Key::Space) {
@@ -37,10 +37,10 @@ void Controls::checkControls(UIRun& UiR) {
 
     if (auto wheel = event->getIf<sf::Event::MouseWheelScrolled>()) { //zoom
         if (wheel->delta > 0) {// Zoom avant
-            Zoom.zoomIn(ui.window);
+            UiR.ui.Zoom.zoomIn(UiR.ui.window);
         }
         else {// Zoom arrière
-            Zoom.zoomOut(ui.window);
+            UiR.ui.Zoom.zoomOut(UiR.ui.window);
         }
     }
     return;

@@ -26,7 +26,7 @@ public :
     UI();
     void initializeWindow();
     void handleCellClick(Grid* grid, sf::RenderWindow& window, const sf::Event::MouseButtonPressed& mouse);
-    void displayWindow(sf::RenderWindow& window, Grid* grid);
+    void displayWindow(Grid* grid);
     int getPosXUi();
     int getPosYUi();
 };
