@@ -8,6 +8,10 @@
 GridSaveLoad::GridSaveLoad(){}
 
 void GridSaveLoad::save(Grid* grid) { //sauvegarde avec ajout _out
+    if (this->file.empty()) {
+        std::cout << "Indiquez le fichier dans lequel vous voulez sauvegarder votre Pattern: " << std::endl;
+        std::cin >> this->file;
+    }
     std::string tempFile = this->file;
     tempFile.erase(this->file.size() - 4);
     std::ofstream save((tempFile + "_out.txt"), std::ios::out | std::ios::trunc);
