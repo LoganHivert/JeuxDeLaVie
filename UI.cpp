@@ -4,6 +4,19 @@
 
 UI::UI() {}
 
+void UI::CheckGridColor(Grid* grid) {
+    for (int i = 0; i < grid->cols; i++) {
+        for (int j = 0; j < grid->rows; j++) {
+            if (grid->cells[i][j].alive) {
+                grid->cells[i][j].shape.setFillColor(sf::Color::White);
+            }
+            else {
+                grid->cells[i][j].shape.setFillColor(sf::Color::Black);
+            }
+        }
+    }
+}
+
 int UI::getPosXUi() {
     return (cell->getPosX() * CELL_SIZE);
 }

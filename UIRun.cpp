@@ -31,6 +31,7 @@ void UIRun::gameRun(Grid* _grid) {
         if (Run) {
             game.checkGrid(grid);
         }
+        ui.CheckGridColor(grid);
         ui.displayWindow(grid);
     }
 }

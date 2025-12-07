@@ -28,5 +28,6 @@ public :
     void displayWindow(Grid* grid);
     int getPosXUi();
     int getPosYUi();
+    void CheckGridColor(Grid* grid);
 };
 

@@ -23,12 +23,6 @@ void Game::checkGrid(Grid* grid) {
 		int x = tempChange[i].getPosX();
 		int y = tempChange[i].getPosY();
 		grid->cells[x][y].alive = tempChange[i].alive;
-		if (tempChange[i].alive) {
-			grid->cells[x][y].shape.setFillColor(sf::Color::White);
-		}
-		else {
-			grid->cells[x][y].shape.setFillColor(sf::Color::Black);
-		}
 	}
 	tempChange.clear();
 	return;
