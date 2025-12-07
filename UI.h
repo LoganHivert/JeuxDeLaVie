@@ -16,15 +16,14 @@ class Grid;
 
 class UI{
 public :
-    Grid grid;
     Cell* cell;
     GridGenerate gridGenerate;
     std::vector<sf::RectangleShape> gridLines;
-    View Zoom;
+    View* Zoom;
     sf::RenderWindow window;
     Button* monBouton = nullptr;
     UI();
-    void initializeWindow();
+    void initializeWindow(Grid* grid);
     void handleCellClick(Grid* grid, sf::RenderWindow& window, const sf::Event::MouseButtonPressed& mouse);
     void displayWindow(Grid* grid);
     int getPosXUi();

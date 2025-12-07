@@ -1,12 +1,16 @@
 #pragma once
 #include "Cells.h"
 #include <vector>
+#include <fstream>
+#include <string>
+#include <iostream>
  //modifier car taille de la grille
 
 class Grid {
 public:
     Grid();
-
+    int rows;
+    int cols;
     // Grille vecteur
     std::vector<std::vector<Cell>> cells; 
 

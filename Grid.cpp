@@ -3,17 +3,21 @@
 #include "Constantes.h"
 
 Grid::Grid() {
+	std::cout << "indiquez la taille de votre tableau: " << std::endl << "Lignes :";
+	std::cin >> rows;
+	std::cout << "Colonnes :";
+	std::cin >> cols;
 
-	for (int y = 0; y < ROWS; ++y) {
+	for (int y = 0; y < rows; ++y) {
 		std::vector<Cell> row;
-		for (int x = 0; x < COLS; ++x) {
+		for (int x = 0; x < cols; ++x) {
 			row.emplace_back(x, y, 0);
 		}
 		cells.push_back(std::move(row));
 	}
 
-	this->WindowsLength = ROWS * CELL_SIZE;
-	this->WindowsWidth = COLS * CELL_SIZE;
+	this->WindowsLength = rows * CELL_SIZE;
+	this->WindowsWidth = cols * CELL_SIZE;
 }
 
 int Grid::getVoisinage(int x, int y) {
@@ -32,6 +36,6 @@ int Grid::getVoisinage(int x, int y) {
 
 
 int Grid::getCell(int x, int y) {
-	if (x < 0 || y < 0 || x >= ROWS || y >= COLS) return 0;
+	if (x < 0 || y < 0 || x >= rows || y >= cols) return 0;
 	return cells[x][y].alive;
 }

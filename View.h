@@ -1,5 +1,6 @@
 #pragma once
 #include <SFML/Graphics.hpp>
+#include "grid.h"
 
 class View {
 public:
@@ -7,7 +8,7 @@ public:
     const float MaxZoom = 3000.f;
     float viewWidth;
     float viewHeight;
-    View();
+    View(Grid* grid);
     sf::View view;
     void zoomIn(sf::RenderWindow& window);
     void zoomOut(sf::RenderWindow& window);

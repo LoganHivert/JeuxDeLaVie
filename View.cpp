@@ -4,13 +4,12 @@
 #include <iostream>
 #include <SFML/Graphics.hpp>
 #include <SFML/Window.hpp>
-#include "grid.h"
 #include "Cells.h"
 #include "Constantes.h"
 
-View::View() {
-    viewWidth = static_cast<float>(COLS) * static_cast<float>(CELL_SIZE);
-    viewHeight = static_cast<float>(ROWS) * static_cast<float>(CELL_SIZE);
+View::View(Grid* grid) {
+    viewWidth = static_cast<float>(grid->cols) * static_cast<float>(CELL_SIZE);
+    viewHeight = static_cast<float>(grid->rows) * static_cast<float>(CELL_SIZE);
 }
 
 void View::initialisation(sf::RenderWindow& window,float initialScale){

@@ -20,10 +20,10 @@ void GridSaveLoad::save(Grid* grid) { //sauvegarde avec ajout _out
         return;
     }
 
-    save << ROWS << std::endl;
-    save << COLS << std::endl << std::endl;
-    for (int i = 0; i < ROWS; ++i) {
-        for (int j = 0; j < COLS; ++j) {
+    save << grid->rows << std::endl;
+    save << grid->cols << std::endl << std::endl;
+    for (int i = 0; i < grid->rows; ++i) {
+        for (int j = 0; j < grid->cols; ++j) {
             save << grid->getCell(i, j);
         }
         save << std::endl;
@@ -43,10 +43,10 @@ void GridSaveLoad::saveVoid(Grid* grid) { //sauvegarde fichier
         return;
     }
 
-    savevoid << ROWS << std::endl;
-    savevoid << COLS << std::endl << std::endl;
-    for (int i = 0; i < ROWS; ++i) {
-        for (int j = 0; j < COLS; ++j) {
+    savevoid << grid->rows << std::endl;
+    savevoid << grid->cols << std::endl << std::endl;
+    for (int i = 0; i < grid->rows; ++i) {
+        for (int j = 0; j < grid->cols; ++j) {
             savevoid << grid->getCell(i, j);
         }
         savevoid << std::endl;
@@ -84,8 +84,8 @@ void GridSaveLoad::load(Grid* grid) {
     std::getline(load, line); // consume end of line
     std::getline(load, line); // consume blank line
 
-    int maxRows = std::min(fileRows, ROWS);
-    int maxCols = std::min(fileCols, COLS);
+    int maxRows = std::min(fileRows, grid->rows);
+    int maxCols = std::min(fileCols, grid->rows);
 
     for (int i = 0; i < maxRows; ++i) {
         if (!std::getline(load, line)) break;

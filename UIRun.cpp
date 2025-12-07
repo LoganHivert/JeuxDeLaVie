@@ -21,7 +21,7 @@ void UIRun::gameRun(Grid* _grid) {
     }
     ui.monBouton = new Button(300, 250, 200, 100, font, "Cliquez ici!");
 
-    ui.initializeWindow();
+    ui.initializeWindow(grid);
     Run = false;
     //randomizeGrid();
     while (ui.window.isOpen()) {

@@ -9,7 +9,7 @@
 std::vector<sf::RectangleShape> GridGenerate::createGridLines(Grid& grid){
     std::vector<sf::RectangleShape> gridLines;
     // Lignes verticales
-    for (float x = 0; x <= COLS; ++x) {
+    for (float x = 0; x <= grid.cols; ++x) {
         float px = x * CELL_SIZE;
         sf::RectangleShape line(sf::Vector2f(1.f, static_cast<float>(grid.WindowsLength)));
         line.setPosition(sf::Vector2f(px, 0.f));
@@ -18,7 +18,7 @@ std::vector<sf::RectangleShape> GridGenerate::createGridLines(Grid& grid){
     }
 
     // Lignes horizontales
-    for (float y = 0; y <= ROWS; ++y) {
+    for (float y = 0; y <= grid.rows; ++y) {
         float py = y * CELL_SIZE;
         sf::RectangleShape line(sf::Vector2f(static_cast<float>(grid.WindowsWidth), 1.f));
         line.setPosition(sf::Vector2f(0.f, py));

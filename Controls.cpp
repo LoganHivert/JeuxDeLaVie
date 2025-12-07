@@ -42,10 +42,10 @@ void Controls::checkControls(UIRun& UiR) {
 
     if (auto wheel = event->getIf<sf::Event::MouseWheelScrolled>()) { //zoom
         if (wheel->delta > 0) {// Zoom avant
-            UiR.ui.Zoom.zoomIn(UiR.ui.window);
+            UiR.ui.Zoom->zoomIn(UiR.ui.window);
         }
         else {// Zoom arrière
-            UiR.ui.Zoom.zoomOut(UiR.ui.window);
+            UiR.ui.Zoom->zoomOut(UiR.ui.window);
         }
     }
     return;

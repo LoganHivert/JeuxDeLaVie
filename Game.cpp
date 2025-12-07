@@ -9,8 +9,8 @@ Game::Game(){
 }
 
 void Game::checkGrid(Grid* grid) {
-	for (int i = 0; i < ROWS; ++i) {
-		for (int j = 0; j < COLS; ++j) {
+	for (int i = 0; i < grid->rows; ++i) {
+		for (int j = 0; j < grid->cols; ++j) {
 			if (grid->cells[i][j].alive) {
 				LawAlive(i, j, grid);
 			}
@@ -57,8 +57,8 @@ void Game::LawDead(int x, int y, Grid* grid) {
 }
 
 void Game::randomizeGrid(Grid* grid) {
-	for (int i = 0; i < ROWS; ++i) {
-		for (int j = 0; j < COLS; ++j) {
+	for (int i = 0; i < grid->rows; ++i) {
+		for (int j = 0; j < grid->cols; ++j) {
 			grid->cells[i][j].alive=std::rand() % 2;
 		}
 	}
