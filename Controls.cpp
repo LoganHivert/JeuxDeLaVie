@@ -21,17 +21,22 @@ void Controls::checkControls(UIRun& UiR) {
     }
     if (auto key = event->getIf<sf::Event::KeyPressed>()) {
         if (key->code == sf::Keyboard::Key::S) {
-            Gload->save();
+            Gload.save(UiR.grid);
         }
     }
     if (auto key = event->getIf<sf::Event::KeyPressed>()) {
         if (key->code == sf::Keyboard::Key::R) {
-            UiR.game->randomizeGrid();
+            UiR.game->randomizeGrid(UiR.grid);
         }
     }
     if (auto key = event->getIf<sf::Event::KeyPressed>()) {
         if (key->code == sf::Keyboard::Key::L) {
-            Gload->load();
+            Gload.load(UiR.grid);
+        }
+    }
+    if (auto key = event->getIf<sf::Event::KeyPressed>()) {
+        if (key->code == sf::Keyboard::Key::N) {
+            Gload.saveVoid(UiR.grid);
         }
     }
 

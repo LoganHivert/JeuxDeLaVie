@@ -8,10 +8,9 @@
 
 class ConsoleRun{
 public:
-	Grid* grid;
 	Game* game;
 	GridSaveLoad* Gload;
-	ConsoleRun();
+	Grid* grid;
 	bool Run;
-	void gameRun();
+	void gameRun(Grid* _grid);
 };

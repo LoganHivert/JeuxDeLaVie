@@ -5,9 +5,9 @@
 #include <fstream>
 #include <iostream>
 
-GridSaveLoad::GridSaveLoad(Grid* g) : grid(g) {}
+GridSaveLoad::GridSaveLoad(){}
 
-void GridSaveLoad::save() { //sauvegarde avec ajout _out
+void GridSaveLoad::save(Grid* grid) { //sauvegarde avec ajout _out
     std::string tempFile = this->file;
     tempFile.erase(this->file.size() - 4);
     std::ofstream save((tempFile + "_out.txt"), std::ios::out | std::ios::trunc);
@@ -15,7 +15,7 @@ void GridSaveLoad::save() { //sauvegarde avec ajout _out
         std::cerr << "Impossible d'ouvrir le fichier !" << std::endl;
         return;
     }
-    if (!this->grid) {
+    if (!grid) {
         std::cerr << "Pas de grille à sauvegarder !" << std::endl;
         return;
     }
@@ -24,13 +24,13 @@ void GridSaveLoad::save() { //sauvegarde avec ajout _out
     save << COLS << std::endl << std::endl;
     for (int i = 0; i < ROWS; ++i) {
         for (int j = 0; j < COLS; ++j) {
-            save << this->grid->getCell(i, j);
+            save << grid->getCell(i, j);
         }
         save << std::endl;
     }
 }
 
-void GridSaveLoad::saveVoid() { //sauvegarde fichier
+void GridSaveLoad::saveVoid(Grid* grid) { //sauvegarde fichier
     std::cout << "Indiquez ou vous voulez créer votre fichier vide" << std::endl;
     std::cin >> this->file;
     std::ofstream savevoid((this->file), std::ios::out | std::ios::trunc);
@@ -38,7 +38,7 @@ void GridSaveLoad::saveVoid() { //sauvegarde fichier
         std::cerr << "Impossible d'ouvrir le fichier !" << std::endl;
         return;
     }
-    if (!this->grid) {
+    if (!grid) {
         std::cerr << "Pas de grille à sauvegarder !" << std::endl;
         return;
     }
@@ -47,13 +47,13 @@ void GridSaveLoad::saveVoid() { //sauvegarde fichier
     savevoid << COLS << std::endl << std::endl;
     for (int i = 0; i < ROWS; ++i) {
         for (int j = 0; j < COLS; ++j) {
-            savevoid << this->grid->getCell(i, j);
+            savevoid << grid->getCell(i, j);
         }
         savevoid << std::endl;
     }
 }
 
-void GridSaveLoad::load() {
+void GridSaveLoad::load(Grid* grid) {
     std::cout << "Indiquez le chemin du fichier depuis lequel vous voulez charger votre pattern." << std::endl;
     std::cin >> this->file;
     if (file == "1") {
@@ -64,7 +64,7 @@ void GridSaveLoad::load() {
         std::cerr << "Impossible d'ouvrir le fichier de pattern !" << std::endl;
         return;
     }
-    if (!this->grid) {
+    if (!grid) {
         std::cerr << "Pas de grille à charger !" << std::endl;
         return;
     }
@@ -91,7 +91,7 @@ void GridSaveLoad::load() {
         if (!std::getline(load, line)) break;
         for (int j = 0; j < maxCols && j < (int)line.size(); ++j) {
             char ch = line[j];
-            this->grid->cells[i][j].alive = (ch == '1') ? 1 : 0;
+            grid->cells[i][j].alive = (ch == '1') ? 1 : 0;
         }
     }
 }

@@ -3,7 +3,7 @@
 #include "GridSaveLoad.h"
 #include "Grid.h"
 
-Console::Console() : grid(), game(&grid){}
+Console::Console() : grid(), game(){}
 
 int Console::menu() {
     std::cout << "1: créer un nouveau fichier" << std::endl;

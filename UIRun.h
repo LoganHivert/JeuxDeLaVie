@@ -6,5 +6,6 @@
 class UIRun : public ConsoleRun {
 public:
 	UI ui;
-	void gameRun();
+	Grid* grid;
+	void gameRun(Grid* _grid);
 };

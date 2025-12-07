@@ -8,12 +8,11 @@ const int MiniLawDead = 3; // modifier le nombre de voisins pour la naissance
 class Grid;
 class Game {
 public:
-	Game(Grid* g);
-	Grid grid;
+	Game();
 	std::vector<Cell> tempChange;
-	void checkGrid();
-	void LawAlive(int x, int y);
-	void LawDead(int x, int y);
-	void randomizeGrid();
-	void play(int a);
+	void checkGrid(Grid* grid);
+	void LawAlive(int x, int y, Grid* grid);
+	void LawDead(int x, int y, Grid* grid);
+	void randomizeGrid(Grid* grid);
+	void play(int a, Grid* grid);
 };

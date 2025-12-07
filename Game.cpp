@@ -5,36 +5,37 @@
 #include <SFML/Graphics.hpp>
 
 
-Game::Game(Grid* g){}
+Game::Game(){
+}
 
-void Game::checkGrid() {
+void Game::checkGrid(Grid* grid) {
 	for (int i = 0; i < ROWS; ++i) {
 		for (int j = 0; j < COLS; ++j) {
-			if (grid.cells[i][j].alive) {
-				LawAlive(i, j);
+			if (grid->cells[i][j].alive) {
+				LawAlive(i, j, grid);
 			}
 			else {
-				LawDead(i, j);
+				LawDead(i, j, grid);
 			}
 		}
 	}
 	for (int i = 0; i < tempChange.size(); ++i) {
 		int x = tempChange[i].getPosX();
 		int y = tempChange[i].getPosY();
-		grid.cells[x][y].alive = tempChange[i].alive;
+		grid->cells[x][y].alive = tempChange[i].alive;
 		if (tempChange[i].alive) {
-			grid.cells[x][y].shape.setFillColor(sf::Color::White);
+			grid->cells[x][y].shape.setFillColor(sf::Color::White);
 		}
 		else {
-			grid.cells[x][y].shape.setFillColor(sf::Color::Black);
+			grid->cells[x][y].shape.setFillColor(sf::Color::Black);
 		}
 	}
 	tempChange.clear();
 	return;
 }
 
-void Game::LawAlive(int x, int y) {
-	int nbAlive = grid.getVoisinage(x, y);
+void Game::LawAlive(int x, int y, Grid* grid) {
+	int nbAlive = grid->getVoisinage(x, y);
 	if (nbAlive >= MiniLawAlive && nbAlive <= MaxiLawAlive) {
 		return;
 	}
@@ -44,8 +45,8 @@ void Game::LawAlive(int x, int y) {
 	}
 }
 
-void Game::LawDead(int x, int y) {
-	int nbAlive = grid.getVoisinage(x, y);
+void Game::LawDead(int x, int y, Grid* grid) {
+	int nbAlive = grid->getVoisinage(x, y);
 	if (nbAlive == MiniLawDead) {
 		tempChange.emplace_back(x, y, 1);
 		return;
@@ -55,16 +56,16 @@ void Game::LawDead(int x, int y) {
 	}
 }
 
-void Game::randomizeGrid() {
+void Game::randomizeGrid(Grid* grid) {
 	for (int i = 0; i < ROWS; ++i) {
 		for (int j = 0; j < COLS; ++j) {
-			grid.cells[i][j].alive=std::rand() % 2;
+			grid->cells[i][j].alive=std::rand() % 2;
 		}
 	}
 }
 
-void Game::play(int a) {
+void Game::play(int a, Grid* grid) {
     for (int i = 0; i < a; ++i) {
-        this->checkGrid();
+        this->checkGrid(grid);
     }
 }

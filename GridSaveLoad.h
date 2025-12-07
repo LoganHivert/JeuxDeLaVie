@@ -2,15 +2,12 @@
 #include "Grid.h"
 class GridSaveLoad{
 public :
-	GridSaveLoad(Grid* g);
+	GridSaveLoad();
 	std::string file;
-	void save();
-	void saveVoid();
-	void load();
-
+	void save(Grid* g);
+	void saveVoid(Grid* g);
+	void load(Grid* g);
 private:
-	Grid* grid; // ne possède pas la Grid
-
-
+	Grid* grid;
 };
 

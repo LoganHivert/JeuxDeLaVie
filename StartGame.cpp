@@ -23,13 +23,13 @@ void StartGame::chooseGame() {
 void StartGame::launchGame() {
     chooseGame();
     grid = new Grid();
-    Game game(this->grid);
-	GridSaveLoad Gload(grid);
+    Game game;
+	GridSaveLoad Gload;
     if (Gtype) {
-        gameCons->gameRun();
+        gameCons->gameRun(this->grid);
     }
     else {
-        gameUi->gameRun();
+        gameUi->gameRun(this->grid);
     }
     delete grid;
     grid = nullptr;

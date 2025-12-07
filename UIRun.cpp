@@ -3,9 +3,10 @@
 #include "GridSaveLoad.h"
 #include "Controls.h"
 
-void UIRun::gameRun() {
-    GridSaveLoad Gload(this->grid);
-    Game game(this->grid);
+void UIRun::gameRun(Grid* _grid) {
+    grid = _grid;
+    GridSaveLoad Gload;
+    Game game;
     Controls controls;
     std::filesystem::path p("Font/Roboto_Condensed-Bold.ttf");
     if (std::filesystem::exists(p)) {
@@ -28,8 +29,8 @@ void UIRun::gameRun() {
             controls.checkControls(*this);
         }
         if (Run) {
-            game.checkGrid();
+            game.checkGrid(grid);
         }
-        ui.displayWindow(this->grid);
+        ui.displayWindow(grid);
     }
 }
