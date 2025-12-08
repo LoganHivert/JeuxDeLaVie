@@ -9,7 +9,7 @@
 #include "View.h"
 #include "Cells.h"
 #include <SFML/Graphics.hpp>
-#include "Bouton.h"
+#include "Buttons.h"
 #include "GridSaveLoad.h"
 
 class Grid;
@@ -18,6 +18,7 @@ class UI{
 public :
     Cell* cell;
     GridGenerate gridGenerate;
+    sf::RectangleShape gridBackground;
     std::vector<sf::RectangleShape> gridLines;
     View* Zoom;
     sf::RenderWindow window;

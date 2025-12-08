@@ -6,5 +6,7 @@ class GridGenerate{
 	public:
 	GridGenerate();
 	std::vector<sf::RectangleShape> createGridLines(Grid& grid);
+	static void updateGridLinesThickness(std::vector<sf::RectangleShape>& gridLines, 
+                                         Grid& grid, float zoomLevel);
 };
 

@@ -1,8 +1,14 @@
 #include "Controls.h"
 #include "UI.h"
+#include "GridSaveLoad.h"
+#include "Grid.h"
+#include "GridGenerate.h"
+#include "View.h"
 
 Controls::Controls() {}
-void Controls::checkControls(UIRun& UiR) {
+
+void Controls::checkControls(UIRun& UiR, Grid& grid) {
+    GridGenerate gridGenerate;
     if (event->is<sf::Event::Closed>()) {
         UiR.ui.window.close();
     }
@@ -47,6 +53,13 @@ void Controls::checkControls(UIRun& UiR) {
         else {// Zoom arrière
             UiR.ui.Zoom->zoomOut(UiR.ui.window);
         }
+        float zoomLevel = UiR.ui.Zoom->getZoomLevel();
+        std::cout << "Zoom Level: " << zoomLevel << std::endl;
+        std::cout << "View Size: " << UiR.ui.Zoom->view.getSize().x << "x" << UiR.ui.Zoom->view.getSize().y << std::endl;
+        /*float expectedThickness = std::max(1.0f, 1.0f / zoomLevel);
+        std::cout << "Expected Thickness: " << expectedThickness << std::endl;*/
+
+        GridGenerate::updateGridLinesThickness(UiR.ui.gridLines, grid, UiR.ui.Zoom->getZoomLevel());
     }
     return;
 }

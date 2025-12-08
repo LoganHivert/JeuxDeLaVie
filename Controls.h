@@ -11,6 +11,6 @@ public:
 	std::optional<sf::Event> event;
 	GridSaveLoad Gload;
 	Controls();
-	void checkControls(UIRun& UiR);
+	void checkControls(UIRun& UiR, Grid& grid);
 };
 

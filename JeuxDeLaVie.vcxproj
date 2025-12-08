@@ -141,7 +141,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="Bouton.cpp" />
+    <ClCompile Include="Buttons.cpp" />
     <ClCompile Include="Cells.cpp" />
     <ClCompile Include="Console.cpp" />
     <ClCompile Include="ConsoleRun.cpp" />
@@ -157,7 +157,7 @@
     <ClCompile Include="View.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Bouton.h" />
+    <ClInclude Include="Buttons.h" />
     <ClInclude Include="Cells.h" />
     <ClInclude Include="Console.h" />
     <ClInclude Include="ConsoleRun.h" />

@@ -62,13 +62,13 @@ void UI::displayWindow(Grid* grid) {
 
     window.clear(sf::Color::Black);
 
-    for (auto& line : gridLines) {
-        window.draw(line);
-    }
     for (auto& row : grid->cells) {
         for (auto& cell : row) {
             window.draw(cell.shape);
         }
+    }
+    for (auto& line : gridLines) {
+        window.draw(line);
     }
     if (this->monBouton != nullptr) {
         this->monBouton->draw(window);

@@ -18,5 +18,5 @@ public:
 	void setSpeed(float coef);
 	int getSpeed();
 private:
-	int speed;
+	int speed{ 1 };
 };

@@ -63,7 +63,7 @@
     <ClCompile Include="GridSaveLoad.cpp">
       <Filter>Source Files\GRID</Filter>
     </ClCompile>
-    <ClCompile Include="Bouton.cpp">
+    <ClCompile Include="Buttons.cpp">
       <Filter>Source Files\MAIN\UI</Filter>
     </ClCompile>
     <ClCompile Include="ConsoleRun.cpp">
@@ -104,7 +104,7 @@
     <ClInclude Include="GridSaveLoad.h">
       <Filter>Header Files\GRID</Filter>
     </ClInclude>
-    <ClInclude Include="Bouton.h">
+    <ClInclude Include="Buttons.h">
       <Filter>Header Files\MAIN\UI</Filter>
     </ClInclude>
     <ClInclude Include="ConsoleRun.h">

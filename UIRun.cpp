@@ -1,5 +1,5 @@
 #include "UIRun.h"
-#include "Bouton.h"
+#include "Buttons.h"
 #include "GridSaveLoad.h"
 #include "Controls.h"
 using namespace std;
@@ -27,18 +27,25 @@ void UIRun::gameRun(Grid* _grid) {
     //randomizeGrid();
     while (ui.window.isOpen()) {
         while ((controls.event = ui.window.pollEvent()).has_value()) {
-            controls.checkControls(*this);
+            controls.checkControls(*this, *grid);
         }
         if (Run) {
             game.checkGrid(grid);
         }
         ui.CheckGridColor(grid);
+        GridGenerate::updateGridLinesThickness(ui.gridLines, *grid, ui.Zoom->getZoomLevel());
         ui.displayWindow(grid);
         gameSpeed();
     }
 }
 
 void UIRun::gameSpeed() {
+
+    if (!game) {
+        // gérer le cas nul (valeur par défaut / log / return)
+        return;
+    }
+
     if (game->getSpeed() > 100) {
         std::this_thread::sleep_for(std::chrono::milliseconds(game->getSpeed()));
     }

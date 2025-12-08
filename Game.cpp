@@ -5,8 +5,8 @@
 #include <SFML/Graphics.hpp>
 
 
-Game::Game(){
-}
+Game::Game() {
+};
 
 void Game::checkGrid(Grid* grid) {
 	for (int i = 0; i < grid->rows; ++i) {
