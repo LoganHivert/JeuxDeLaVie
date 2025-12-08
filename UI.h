@@ -22,7 +22,8 @@ public :
     std::vector<sf::RectangleShape> gridLines;
     View* Zoom;
     sf::RenderWindow window;
-    Button* monBouton = nullptr;
+    sf::View initialView;
+    Button* myButton = nullptr;
     UI();
     void initializeWindow(Grid* grid);
     void handleCellClick(Grid* grid, sf::RenderWindow& window, const sf::Event::MouseButtonPressed& mouse);

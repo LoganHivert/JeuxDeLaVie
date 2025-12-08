@@ -20,9 +20,10 @@ void UIRun::gameRun(Grid* _grid) {
         std::cout << "Erreur lors du chargement de la police." << std::endl;
         return;
     }
-    ui.monBouton = new Button(300, 250, 200, 100, font, "Cliquez ici!");
+    ui.myButton = new Button(10, 10, 200, 100, font, "Cliquez ici!");
 
     ui.initializeWindow(grid);
+    ui.window.setView(this->ui.Zoom->view); //test
     Run = false;
     //randomizeGrid();
     while (ui.window.isOpen()) {
@@ -33,7 +34,6 @@ void UIRun::gameRun(Grid* _grid) {
             game.checkGrid(grid);
         }
         ui.CheckGridColor(grid);
-        GridGenerate::updateGridLinesThickness(ui.gridLines, *grid, ui.Zoom->getZoomLevel());
         ui.displayWindow(grid);
         gameSpeed();
     }

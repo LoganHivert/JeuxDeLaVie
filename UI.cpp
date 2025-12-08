@@ -29,7 +29,9 @@ void UI::initializeWindow(Grid* grid) {
     window.create(sf::VideoMode({ 1000u, 1000u }), "Game of Life");
     Zoom = new View(grid);
     Zoom->initialisation(window, 4.f);
+	this->initialView = window.getDefaultView(); //pour le bouton
     sf::View v = window.getView();
+    window.setView(this->Zoom->view); //test
     gridLines = gridGenerate.createGridLines(*grid);
     for (int y = 0; y < grid->rows; y++) {
         for (int x = 0; x < grid->cols; x++) {
@@ -61,7 +63,7 @@ void UI::displayWindow(Grid* grid) {
     }
 
     window.clear(sf::Color::Black);
-
+    window.setView(this->Zoom->view);
     for (auto& row : grid->cells) {
         for (auto& cell : row) {
             window.draw(cell.shape);
@@ -70,8 +72,12 @@ void UI::displayWindow(Grid* grid) {
     for (auto& line : gridLines) {
         window.draw(line);
     }
-    if (this->monBouton != nullptr) {
-        this->monBouton->draw(window);
+    if (this->myButton != nullptr) {
+        // Appliquer la vue fixe (initialView)
+        window.setView(this->initialView);
+
+        // Le bouton sera dessiné par rapport à la taille de la fenêtre (0,0 est le coin supérieur gauche)
+        this->myButton->draw(window);
     }
     window.display();
 }

@@ -6,7 +6,7 @@ Button::Button(float x, float y, float width, float height, sf::Font& font, cons
     // Configuration du rectangle
     shape.setPosition({ x, y });
     shape.setSize({ width, height });
-    shape.setFillColor(sf::Color::Blue);
+    shape.setFillColor(sf::Color::Red);
 
     // Configuration du texte
     text.setString(label);

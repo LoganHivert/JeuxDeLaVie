@@ -1,12 +1,6 @@
 #include "View.h"
-#include <fstream>
-#include <string>
-#include <iostream>
 #include <SFML/Graphics.hpp>
-#include <SFML/Window.hpp>
-#include "Cells.h"
 #include "Constantes.h"
-#include "UIRun.h"
 
 View::View(Grid* grid) {
     viewWidth = static_cast<float>(grid->cols) * static_cast<float>(CELL_SIZE);
@@ -25,7 +19,6 @@ void View::initialisation(sf::RenderWindow& window,float initialScale){
 
 void View::zoomIn(sf::RenderWindow& window) {
     sf::Vector2f size = view.getSize(); // taille actuelle de la vue
-    UI ui;
     if (size.x > MinZoom) {
         view.zoom(0.9f);// agrandi la vue
         currentZoomLevel /= 0.9f; // Inverse car zoom() réduit la vue

@@ -12,7 +12,7 @@ std::vector<sf::RectangleShape> GridGenerate::createGridLines(Grid& grid) {
         float px = x * CELL_SIZE;
         sf::RectangleShape line(sf::Vector2f(1.f, static_cast<float>(grid.WindowsLength)));
         line.setPosition(sf::Vector2f(px, 0.f));
-        line.setFillColor(sf::Color(150, 150, 150));
+        line.setFillColor(sf::Color(50, 50, 50));
         gridLines.push_back(line);
     }
     // Lignes horizontales
@@ -20,7 +20,7 @@ std::vector<sf::RectangleShape> GridGenerate::createGridLines(Grid& grid) {
         float py = y * CELL_SIZE;
         sf::RectangleShape line(sf::Vector2f(static_cast<float>(grid.WindowsWidth), 1.f));
         line.setPosition(sf::Vector2f(0.f, py));
-        line.setFillColor(sf::Color(150, 150, 150));
+        line.setFillColor(sf::Color(50, 50, 50));
         gridLines.push_back(line);
     }
     return gridLines;
@@ -36,8 +36,6 @@ void GridGenerate::updateGridLinesThickness(std::vector<sf::RectangleShape>& gri
     float screenThickness = 1.0f; // Épaisseur désirée à l'écran en pixels
     float thickness = screenThickness * (3.0f / zoomLevel);
 
-    std::cout << "Thickness: " << thickness << std::endl;
-
     int index = 0;
 
     // Lignes verticales
@@ -45,7 +43,6 @@ void GridGenerate::updateGridLinesThickness(std::vector<sf::RectangleShape>& gri
         if (index >= gridLines.size()) break;
         float px = x * CELL_SIZE;
         gridLines[index].setSize(sf::Vector2f(thickness, static_cast<float>(grid.rows * CELL_SIZE)));
-        gridLines[index].setFillColor(sf::Color(150, 150, 150));
         gridLines[index].setPosition(sf::Vector2f(px - thickness / 2.0f, 0.f));
         index++;
     }
@@ -54,7 +51,6 @@ void GridGenerate::updateGridLinesThickness(std::vector<sf::RectangleShape>& gri
     for (int y = 0; y <= grid.rows; ++y) {
         if (index >= gridLines.size()) break;
         float py = y * CELL_SIZE;
-        gridLines[index].setFillColor(sf::Color(150, 150, 150));
         gridLines[index].setSize(sf::Vector2f(static_cast<float>(grid.cols * CELL_SIZE), thickness));
         gridLines[index].setPosition(sf::Vector2f(0.f, py - thickness / 2.0f));
         index++;
