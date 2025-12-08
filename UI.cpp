@@ -26,12 +26,11 @@ int UI::getPosYUi() {
 }
 
 void UI::initializeWindow(Grid* grid) {
-    window.create(sf::VideoMode({ 1000u, 1000u }), "Game of Life");
+    window.create(sf::VideoMode({ 1200u, 1200u }), "Game of Life");
     Zoom = new View(grid);
     Zoom->initialisation(window, 4.f);
 	this->initialView = window.getDefaultView(); //pour le bouton
     sf::View v = window.getView();
-    window.setView(this->Zoom->view); //test
     gridLines = gridGenerate.createGridLines(*grid);
     for (int y = 0; y < grid->rows; y++) {
         for (int x = 0; x < grid->cols; x++) {
@@ -45,8 +44,14 @@ void UI::initializeWindow(Grid* grid) {
 }
 
 void UI::handleCellClick(Grid* grid, sf::RenderWindow& window, const sf::Event::MouseButtonPressed& mouse) {
+
+	// vue zoom actuelle
+    window.setView(this->Zoom->view);
+
+    // Convertir la position du clic
     sf::Vector2f worldPos = window.mapPixelToCoords(sf::Vector2i(mouse.position.x, mouse.position.y));
 
+    //trouver la cellule dans le monde :
     int x = static_cast<int>(worldPos.x / CELL_SIZE);
     int y = static_cast<int>(worldPos.y / CELL_SIZE);
 
@@ -72,12 +77,12 @@ void UI::displayWindow(Grid* grid) {
     for (auto& line : gridLines) {
         window.draw(line);
     }
-    if (this->myButton != nullptr) {
-        // Appliquer la vue fixe (initialView)
+    for (Button* btn : this->buttons) {
+        // la vue fixe
         window.setView(this->initialView);
 
-        // Le bouton sera dessiné par rapport à la taille de la fenêtre (0,0 est le coin supérieur gauche)
-        this->myButton->draw(window);
+		// Le bouton coin gauche haut
+        btn->draw(window);
     }
     window.display();
 }

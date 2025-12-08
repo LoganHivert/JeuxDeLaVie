@@ -5,7 +5,7 @@
 class View {
 public:
     const float MinZoom = 400.f;
-    const float MaxZoom = 4000.f;
+    const float MaxZoom = 3000.f;
     float currentZoomLevel = 1.0f; // Niveau de zoom actuel
     float viewWidth;
     float viewHeight;

@@ -23,7 +23,7 @@ public :
     View* Zoom;
     sf::RenderWindow window;
     sf::View initialView;
-    Button* myButton = nullptr;
+    std::vector<Button*> buttons;
     UI();
     void initializeWindow(Grid* grid);
     void handleCellClick(Grid* grid, sf::RenderWindow& window, const sf::Event::MouseButtonPressed& mouse);

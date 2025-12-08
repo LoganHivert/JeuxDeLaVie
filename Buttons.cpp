@@ -6,17 +6,17 @@ Button::Button(float x, float y, float width, float height, sf::Font& font, cons
     // Configuration du rectangle
     shape.setPosition({ x, y });
     shape.setSize({ width, height });
-    shape.setFillColor(sf::Color::Red);
+    shape.setFillColor(sf::Color(238,130,238));
 
     // Configuration du texte
     text.setString(label);
-    text.setCharacterSize(20);
+    text.setCharacterSize(25);
     text.setFillColor(sf::Color::White);
 
     // Centrer le texte dans le bouton
     sf::FloatRect textBounds = text.getLocalBounds();
     text.setOrigin({ textBounds.size.x / 2.f, textBounds.size.y / 2.f });
-    text.setPosition({ x + width / 2.f, y + height / 2.f });
+    text.setPosition({ x + width / 2.1f, y + height / 2.2f });
 }
 
 bool Button::isClicked(const sf::Event& event) {//TODO on devrait recevoir direct un vector2f

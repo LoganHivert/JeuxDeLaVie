@@ -9,7 +9,7 @@ void UIRun::gameRun(Grid* _grid) {
     GridSaveLoad Gload;
     Game game;
     Controls controls;
-    std::filesystem::path p("Font/Roboto_Condensed-Bold.ttf");
+    std::filesystem::path p("Font/LEMONMILK-Regular.otf");
     if (std::filesystem::exists(p)) {
         std::cout << "OK" << std::endl;
 
@@ -20,7 +20,15 @@ void UIRun::gameRun(Grid* _grid) {
         std::cout << "Erreur lors du chargement de la police." << std::endl;
         return;
     }
-    ui.myButton = new Button(10, 10, 200, 100, font, "Cliquez ici!");
+
+    Button* btn_start_pause = new Button(10, 10, 200, 75, font, "Pause/Start");
+    ui.buttons.push_back(btn_start_pause);
+    Button* btn_random = new Button(230, 10, 200, 75, font, "Random");
+    ui.buttons.push_back(btn_random);
+    Button* btn_load = new Button(450, 10, 200, 75, font, "Load");
+    ui.buttons.push_back(btn_load);
+    Button* btn_save = new Button(670, 10, 200, 75, font, "Save");
+    ui.buttons.push_back(btn_save);
 
     ui.initializeWindow(grid);
     ui.window.setView(this->ui.Zoom->view); //test
