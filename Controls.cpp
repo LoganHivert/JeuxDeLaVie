@@ -10,10 +10,10 @@ Controls::Controls() {}
 void Controls::checkControls(UIRun& UiR, Grid& grid) {
     GridGenerate gridGenerate;
     if (event->is<sf::Event::Closed>()) {
-        UiR.ui.window.close();
+        UiR.ui->window.close();
     }
     if (auto mouse = event->getIf<sf::Event::MouseButtonPressed>()) {
-        UiR.ui.handleCellClick(UiR.grid, UiR.ui.window, *mouse);
+        UiR.ui->handleCellClick(UiR.grid, UiR.ui->window, *mouse, &UiR);
     }
     if (auto key = event->getIf<sf::Event::KeyPressed>()) {
         if (key->code == sf::Keyboard::Key::Space) {
@@ -48,12 +48,12 @@ void Controls::checkControls(UIRun& UiR, Grid& grid) {
 
     if (auto wheel = event->getIf<sf::Event::MouseWheelScrolled>()) { //zoom
         if (wheel->delta > 0) {// Zoom avant
-            UiR.ui.Zoom->zoomIn(UiR.ui.window);
+            UiR.ui->Zoom->zoomIn(UiR.ui->window);
         }
         else {// Zoom arrière
-            UiR.ui.Zoom->zoomOut(UiR.ui.window);
+            UiR.ui->Zoom->zoomOut(UiR.ui->window);
         }
-        GridGenerate::updateGridLinesThickness(UiR.ui.gridLines, grid, UiR.ui.Zoom->getZoomLevel());
+        GridGenerate::updateGridLinesThickness(UiR.ui->gridLines, grid, UiR.ui->Zoom->getZoomLevel());
     }
     return;
 }

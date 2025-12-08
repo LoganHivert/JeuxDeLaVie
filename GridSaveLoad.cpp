@@ -8,12 +8,12 @@
 GridSaveLoad::GridSaveLoad(){}
 
 void GridSaveLoad::save(Grid* grid) { //sauvegarde avec ajout _out
-    if (this->file.empty()) {
+    if (file.empty()) {
         std::cout << "Indiquez le fichier dans lequel vous voulez sauvegarder votre Pattern: " << std::endl;
-        std::cin >> this->file;
+        std::cin >> file;
     }
-    std::string tempFile = this->file;
-    tempFile.erase(this->file.size() - 4);
+    std::string tempFile = file;
+    tempFile.erase(file.size() - 4);
     std::ofstream save((tempFile + "_out.txt"), std::ios::out | std::ios::trunc);
     if (!save) {
         std::cerr << "Impossible d'ouvrir le fichier !" << std::endl;
@@ -36,8 +36,8 @@ void GridSaveLoad::save(Grid* grid) { //sauvegarde avec ajout _out
 
 void GridSaveLoad::saveVoid(Grid* grid) { //sauvegarde fichier
     std::cout << "Indiquez ou vous voulez créer votre fichier vide" << std::endl;
-    std::cin >> this->file;
-    std::ofstream savevoid((this->file), std::ios::out | std::ios::trunc);
+    std::cin >> file;
+    std::ofstream savevoid((file), std::ios::out | std::ios::trunc);
     if (!savevoid) {
         std::cerr << "Impossible d'ouvrir le fichier !" << std::endl;
         return;
@@ -59,11 +59,11 @@ void GridSaveLoad::saveVoid(Grid* grid) { //sauvegarde fichier
 
 void GridSaveLoad::load(Grid* grid) {
     std::cout << "Indiquez le chemin du fichier depuis lequel vous voulez charger votre pattern." << std::endl;
-    std::cin >> this->file;
+    std::cin >> file;
     if (file == "1") {
         file = "Pattern/Pattern1.txt";
     }
-    std::ifstream load(this->file, std::ios::in);
+    std::ifstream load(file, std::ios::in);
     if (!load) {
         std::cerr << "Impossible d'ouvrir le fichier de pattern !" << std::endl;
         return;

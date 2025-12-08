@@ -5,9 +5,11 @@
 #include <thread>
 #include <chrono>
 
+class UI;
+
 class UIRun : public ConsoleRun {
 public:
-	UI ui;
+	UI* ui;
 	Grid* grid;
 	void gameRun(Grid* _grid);
 	void gameSpeed();

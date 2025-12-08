@@ -11,6 +11,9 @@
 #include <SFML/Graphics.hpp>
 #include "Buttons.h"
 #include "GridSaveLoad.h"
+#include "UIRun.h"
+
+class UIRun;
 
 class Grid;
 
@@ -26,7 +29,7 @@ public :
     std::vector<Button*> buttons;
     UI();
     void initializeWindow(Grid* grid);
-    void handleCellClick(Grid* grid, sf::RenderWindow& window, const sf::Event::MouseButtonPressed& mouse);
+    void handleCellClick(Grid* grid, sf::RenderWindow& window, const sf::Event::MouseButtonPressed& mouse, UIRun* UiR);
     void displayWindow(Grid* grid);
     int getPosXUi();
     int getPosYUi();

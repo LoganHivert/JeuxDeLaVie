@@ -43,8 +43,7 @@ void UI::initializeWindow(Grid* grid) {
     }
 }
 
-void UI::handleCellClick(Grid* grid, sf::RenderWindow& window, const sf::Event::MouseButtonPressed& mouse) {
-
+void UI::handleCellClick(Grid* grid, sf::RenderWindow& window, const sf::Event::MouseButtonPressed& mouse, UIRun* UiR) {
 	// vue zoom actuelle
     window.setView(this->Zoom->view);
 
@@ -55,7 +54,13 @@ void UI::handleCellClick(Grid* grid, sf::RenderWindow& window, const sf::Event::
     int x = static_cast<int>(worldPos.x / CELL_SIZE);
     int y = static_cast<int>(worldPos.y / CELL_SIZE);
 
-    if (x >= 0 && x < grid->cols && y >= 0 && y < grid->rows) {
+    if (mouse.position.x>=10&& mouse.position.x<=210&& mouse.position.y>=10&& mouse.position.y<=85) {
+        UiR->Run = !UiR->Run;
+    }
+    else if (mouse.position.x >= 230 && mouse.position.x <= 430 && mouse.position.y >= 10 && mouse.position.y <= 85) {
+        UiR->game->randomizeGrid(UiR->grid);
+    }
+    else if (x >= 0 && x < grid->cols && y >= 0 && y < grid->rows) {
         Cell& cell = grid->cells[y][x];
         cell.alive = (cell.alive == 0) ? 1 : 0;
         cell.shape.setFillColor(cell.alive != 0 ? sf::Color::White : sf::Color::Black);

@@ -5,6 +5,7 @@
 using namespace std;
 
 void UIRun::gameRun(Grid* _grid) {
+    ui = new UI;
     grid = _grid;
     GridSaveLoad Gload;
     Game game;
@@ -22,27 +23,23 @@ void UIRun::gameRun(Grid* _grid) {
     }
 
     Button* btn_start_pause = new Button(10, 10, 200, 75, font, "Pause/Start");
-    ui.buttons.push_back(btn_start_pause);
+    ui->buttons.push_back(btn_start_pause);
     Button* btn_random = new Button(230, 10, 200, 75, font, "Random");
-    ui.buttons.push_back(btn_random);
-    Button* btn_load = new Button(450, 10, 200, 75, font, "Load");
-    ui.buttons.push_back(btn_load);
-    Button* btn_save = new Button(670, 10, 200, 75, font, "Save");
-    ui.buttons.push_back(btn_save);
+    ui->buttons.push_back(btn_random);
 
-    ui.initializeWindow(grid);
-    ui.window.setView(this->ui.Zoom->view); //test
+    ui->initializeWindow(grid);
+    ui->window.setView(ui->Zoom->view); //test
     Run = false;
     //randomizeGrid();
-    while (ui.window.isOpen()) {
-        while ((controls.event = ui.window.pollEvent()).has_value()) {
+    while (ui->window.isOpen()) {
+        while ((controls.event = ui->window.pollEvent()).has_value()) {
             controls.checkControls(*this, *grid);
         }
         if (Run) {
             game.checkGrid(grid);
         }
-        ui.CheckGridColor(grid);
-        ui.displayWindow(grid);
+        ui->CheckGridColor(grid);
+        ui->displayWindow(grid);
         gameSpeed();
     }
 }
